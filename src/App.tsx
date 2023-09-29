@@ -5,13 +5,13 @@ function App() {
 
   const { toggleColorMode } = useColorMode()
 
-  const bg = useColorModeValue('primary.lm', 'primary.dm')
+  
   
 
   return (
     <>
       <p>Hello World</p>
-      <Button bg={bg} onClick={toggleColorMode}>Toggle Color Mode</Button>
+      <Button variant='brandPrimary' onClick={toggleColorMode}>Toggle Color Mode</Button>
     </>
   )
 }
