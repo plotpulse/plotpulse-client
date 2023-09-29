@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { Button, useColorMode, useColorModeValue } from "@chakra-ui/react"
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const { toggleColorMode } = useColorMode()
+
+  
+  
 
   return (
     <>
       <p>Hello World</p>
+      <Button variant='brandPrimary' onClick={toggleColorMode}>Toggle Color Mode</Button>
     </>
   )
 }
