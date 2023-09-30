@@ -1,11 +1,9 @@
+import { Box } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
-import { Box } from "@chakra-ui/react"
-import { motion } from 'framer-motion'
 
-export function PromptsIndex() {
 
-    
-
+export function Home(){
 
     return (
         <Box
@@ -16,7 +14,7 @@ export function PromptsIndex() {
             exit={{ opacity: 0, transition: { duration: 0.5 } }}
         >
             <p>
-                Prompts go here
+                Home page
                 
                 </p>
                 
