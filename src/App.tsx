@@ -1,5 +1,5 @@
-import { Button, useColorMode, useColorModeValue } from "@chakra-ui/react"
-
+import { Button, useColorMode } from "@chakra-ui/react"
+import { PromptShow, PromptsIndex } from "./pages"
 
 function App() {
 
