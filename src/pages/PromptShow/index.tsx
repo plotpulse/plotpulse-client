@@ -1,4 +1,4 @@
-function PromptsIndex(props: unknown){
+export function PromptShow(props: unknown){
 
     
     return (
@@ -6,4 +6,3 @@ function PromptsIndex(props: unknown){
     )
 }
 
-export default PromptsIndex

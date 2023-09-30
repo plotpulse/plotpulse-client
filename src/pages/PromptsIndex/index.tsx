@@ -1,9 +1,7 @@
-function PromptShow(props: unknown){
+export function PromptsIndex(props: unknown){
 
     
     return (
         <></>
     )
 }
-
-export default PromptShow
