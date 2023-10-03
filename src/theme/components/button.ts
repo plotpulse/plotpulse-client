@@ -3,21 +3,13 @@ import type { StyleFunctionProps } from '@chakra-ui/styled-system'
 import { mode } from '@chakra-ui/theme-tools'
 
 const brandPrimary = defineStyle(
-
-    {
-        background: 'primary.800',
-        color: 'text.50',
-
-        // let's also provide dark mode alternatives
-        _dark: {
-            background: 'primary.200',
-            color: 'text.900',
-        },
-
+    (props: StyleFunctionProps) => ({
+        background: mode('primary.800', 'primary.200')(props),
+        color: mode('text.50', 'text.900')(props),
         _hover: {
-            background: 'primary.400'
+            background: mode('primary.600', 'primary.50')(props),
         }
-    }
+    })
 )
 
 const brandSecondary = defineStyle(
