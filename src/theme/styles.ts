@@ -4,7 +4,7 @@ const styles = {
   global: (props: GlobalStyleProps) => ({
     body: {
       color: mode('text.900', 'text.50')(props),
-      bg: mode('background.50', 'bakground.900')(props),
+      bg: mode('background.50', 'background.900')(props),
     },
     '*::placeholder': {
       color: mode('text.900', 'text.50')(props),
