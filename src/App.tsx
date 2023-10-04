@@ -8,10 +8,6 @@ import { Home, PromptShow, PromptsIndex } from "./pages"
 import { Navbar } from "./components";
 
 function App() {
-
-
-
-
   const element = useRoutes([
     {
       path: "/",
@@ -25,16 +21,10 @@ function App() {
       path: "/prompts/:id",
       element: <PromptShow />
     }
-
   ])
-
-
   const location = useLocation()
-
   if (!element) return null
-
   console.log('hitting app')
-
 
   return (
     <>
@@ -42,15 +32,7 @@ function App() {
       <AnimatePresence mode="wait">
         {React.cloneElement(element, { key: location.pathname })}
       </AnimatePresence>
-    
     </>
-    
-
-
-  
-
-
-
   )
 }
 

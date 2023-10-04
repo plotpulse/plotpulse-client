@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 
 export function PromptShow(){
 
-    
     return (
         <Box
             as={motion.div}
@@ -14,12 +13,7 @@ export function PromptShow(){
         >
             <p>
                 Prompts go here
-                
-                </p>
-                
-
-
-
+            </p>
         </Box>
     )
 }

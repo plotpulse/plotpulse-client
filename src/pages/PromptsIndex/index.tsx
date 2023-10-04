@@ -5,8 +5,6 @@ import { motion } from 'framer-motion'
 export function PromptsIndex() {
 
     
-
-
     return (
         <Box
             as={motion.div}

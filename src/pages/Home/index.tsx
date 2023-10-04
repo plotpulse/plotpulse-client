@@ -1,8 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
-
-
 export function Home(){
 
     return (
@@ -15,12 +13,7 @@ export function Home(){
         >
             <p>
                 Home page
-                
-                </p>
-                
-
-
-
+            </p>
         </Box>
     )
 }
