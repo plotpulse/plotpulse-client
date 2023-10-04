@@ -2,7 +2,6 @@ import * as React from "react"
 import { useLocation, useRoutes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
-
 import { Home, PromptShow, PromptsIndex } from "./pages"
 
 import { Navbar } from "./components";
