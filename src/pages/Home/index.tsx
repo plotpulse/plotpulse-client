@@ -1,5 +1,6 @@
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
+import { LoginButton } from "../../components";
 
 export function Home(){
 
@@ -14,6 +15,7 @@ export function Home(){
             <p>
                 Home page
             </p>
+            <LoginButton/>
         </Box>
     )
 }
