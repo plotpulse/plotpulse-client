@@ -1,7 +1,8 @@
-import { HStack, Link as ChakraLink } from "@chakra-ui/react"
+import { HStack, Link as ChakraLink, Button, useColorMode } from "@chakra-ui/react"
 import { Link as RouterLink } from 'react-router-dom'
 
 export function Navbar(){
+    const { toggleColorMode } = useColorMode()
 
     return (
         <HStack bg='secondary.200'>
@@ -15,6 +16,7 @@ export function Navbar(){
             to='/prompts' >
                 Prompts
             </ChakraLink>
+            <Button onClick={toggleColorMode}>Color</Button>
 
 
         </HStack>

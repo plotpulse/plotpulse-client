@@ -1,5 +1,6 @@
 import { extendTheme } from "@chakra-ui/react";
 
+import config from "./config";
 import colors from './colors'
 import fonts from "./fonts";
 import styles from './styles'
@@ -11,6 +12,7 @@ import styles from './styles'
 import { buttonTheme } from './components/button'
 
 const overrides: Record<string, any> = {
+    config,
     colors,
     fonts,
     styles,
