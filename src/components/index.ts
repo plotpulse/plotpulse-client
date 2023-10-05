@@ -11,6 +11,7 @@ export { LogoutButton } from "./LogoutButton";
 
 // HOME PAGE COMPONENTS
 export { Hero } from './Hero'
+export { HowItWorks } from './HowItWorks'
 
 
 ///////////////////////////////////
