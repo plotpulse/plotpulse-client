@@ -1,4 +1,4 @@
-import { Hero, PageWrapper, LoginButton, LogoutButton } from '../../components'
+import { Hero, PageWrapper} from '../../components'
 
 
 
@@ -9,8 +9,6 @@ export function Home() {
 
         <PageWrapper>
             <Hero />
-            <LoginButton />
-            <LogoutButton />
 
 
 
