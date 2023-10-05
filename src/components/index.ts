@@ -1,8 +1,11 @@
+
 // MULTIPAGE COMPONENTS
 
 export { Navbar } from './Navbar'
 export { PageWrapper } from './PageWrapper'
 export { Footer } from './Footer'
+export { LoginButton } from "./LoginButton";
+export { LogoutButton } from "./LogoutButton";
 
 ///////////////////////////////////
 
