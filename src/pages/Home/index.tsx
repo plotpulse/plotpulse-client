@@ -9,8 +9,8 @@ export function Home() {
 
         <PageWrapper>
             <Hero />
-        <LoginButton/>
-            <LogoutButton/>
+            <LoginButton />
+            <LogoutButton />
 
 
 
