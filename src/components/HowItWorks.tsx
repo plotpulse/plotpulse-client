@@ -1,4 +1,4 @@
-import { HStack, Card, CardHeader, Heading, CardBody, CardFooter, Button, Text, SimpleGrid } from "@chakra-ui/react";
+import { Card, CardHeader, Heading, CardBody, CardFooter, Button, Text, SimpleGrid } from "@chakra-ui/react";
 
 
 export function HowItWorks(){
@@ -18,7 +18,7 @@ export function HowItWorks(){
             </CardFooter>
         </Card>
 
-        
+
 
         <Card>
             <CardHeader>
