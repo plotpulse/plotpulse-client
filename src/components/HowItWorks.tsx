@@ -6,13 +6,13 @@ export function HowItWorks() {
     const accentVal = useColorModeValue('accent.700', 'accent.200')
 
     return (
-        <Box minH={'80vh'} w={'full'} maxW={'xxl'} mt={4}>
+        <Box minH={'75vh'} w={'full'} maxW={'xxl'} mt={4}>
         
         <Heading size='lg' textAlign={'center'} mb={8}>How It Works</Heading>
 
        
         <SimpleGrid spacing={4} columns={{ sm: 1, md: 3 }} mx={12} >
-            <Card>
+            <Card variant={'brandPrimary'}>
                 <CardHeader>
                     <Heading size='md'><Text as='span' color={accentVal}>1. </Text>Sign Up for a Free Account</Heading>
                 </CardHeader>

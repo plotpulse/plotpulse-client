@@ -8,7 +8,7 @@ const brandPrimary = defineStyle(
         color: mode('text.50', 'text.900')(props),
         _hover: {
             background: mode('primary.400', 'primary.50')(props),
-        }
+        },
     })
 )
 

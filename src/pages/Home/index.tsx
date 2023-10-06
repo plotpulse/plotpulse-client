@@ -10,7 +10,8 @@ export function Home() {
 
         <PageWrapper>
             <Hero />
-            <HowItWorks/>
+            <HowItWorks />
+            <AboutUs />
 
             
 
