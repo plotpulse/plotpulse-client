@@ -58,8 +58,8 @@ export function Navbar() {
                                         </ChakraLink>
                                     </MenuItem>
 
-                                    <MenuItem>Link 2</MenuItem>
-                                    <MenuItem>Link 3</MenuItem>
+                                    <MenuItem><LoginButton/></MenuItem>
+                                    <MenuItem><LogoutButton/></MenuItem>
                                     <MenuItem>Link 4</MenuItem>
 
                                 </MenuList>
