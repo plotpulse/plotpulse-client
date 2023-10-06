@@ -1,5 +1,5 @@
 
-import { Hero, PageWrapper, HowItWorks } from '../../components'
+import { Hero, PageWrapper, HowItWorks, AboutUs } from '../../components'
 
 
 

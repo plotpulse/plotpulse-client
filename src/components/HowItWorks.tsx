@@ -6,7 +6,7 @@ export function HowItWorks() {
     const accentVal = useColorModeValue('accent.700', 'accent.200')
 
     return (
-        <Box w={'full'} maxW={'xxl'}>
+        <Box minH={'80vh'} w={'full'} maxW={'xxl'} mt={4}>
         
         <Heading size='lg' textAlign={'center'} mb={8}>How It Works</Heading>
 
