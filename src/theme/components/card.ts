@@ -10,12 +10,9 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 
 const baseStyle = definePartsStyle({
-    //   container: {
-    //     backgroundColor: "blue.50",
-    //     _dark:{
-    //       backgroundColor: "blue.800",
-    //     }
-    //   },
+      container: {
+       padding: '2'
+      },
     //   header: {
     //     paddingBottom: "2px"
     //   },
@@ -28,28 +25,22 @@ const baseStyle = definePartsStyle({
 });
 
 const variants = {
-    brandPrimary: definePartsStyle(
+    main: definePartsStyle(
         (props: StyleFunctionProps) => ({
 
             container: {
-                backgroundColor: mode('background.100', 'background.800')(props),
-                borderColor: mode('accent.800', 'accent.200')(props),
-                borderWidth: '3px',
+                backgroundColor: mode('background.100', 'background.900')(props),
+                borderColor: mode('background.200', 'background.800')(props),
+                borderWidth: '5px',
                 borderBottomLeftRadius: '60',
                 borderTopRightRadius: '60',
-                
+
 
             }
 
         }),
-    // brandPrimary: definePartsStyle({
-    //     container: {
-    //       borderColor: "#459cc6",
-    //       borderWidth: "3px",
-    //       color: "chakra-body-text"
-    //     }
-    //   })
-  )};
+    )
+};
 
 
 export const cardTheme = defineMultiStyleConfig({
