@@ -1,7 +1,7 @@
-import { HStack, Link as ChakraLink, Button, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image } from "@chakra-ui/react"
+import { HStack, Link as ChakraLink, Button, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image, MenuButton, Menu, MenuList, MenuItem } from "@chakra-ui/react"
 import { Link as RouterLink } from 'react-router-dom'
 import { LoginButton, LogoutButton } from "."
-import { MoonIcon, SunIcon, SettingsIcon } from '@chakra-ui/icons'
+import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 
 export function Navbar() {
     const { toggleColorMode } = useColorMode()
@@ -29,21 +29,7 @@ export function Navbar() {
                         </HStack>
 
                     </ChakraLink>
-                    <ChakraLink
-                        px={4}
-                        py={2}
-                        borderRadius={'.25rem'}
-                        as={RouterLink}
-                        to='/prompts'
-                        _hover={{
-                            textDecoration: 'none',
-                            bg: useColorModeValue('background.200', 'background.600')
-                        }}>
 
-                        <Heading size={"sm"}>
-                            Prompts
-                        </Heading>
-                    </ChakraLink>
                 </Flex>
                 <Flex gap={2}>
                     <IconButton
@@ -52,12 +38,40 @@ export function Navbar() {
                         onClick={toggleColorMode}
                         icon={iconValue}>
                     </IconButton>
+                    <Menu>
+                        {({ isOpen }) => (
+                            <>
 
-                    <IconButton
-                        variant={'brandSecondary'}
-                        aria-label="User Profile Settings"
-                        icon={<SettingsIcon />}>
-                    </IconButton>
+                                <MenuButton as={IconButton}
+                                    variant={'brandSecondary'}
+                                    aria-label="Hamburger Menu"
+                                    icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}>
+
+                                </MenuButton>
+                                <MenuList>
+                                    <MenuItem>
+                                        <ChakraLink
+                                            borderRadius={'.25rem'}
+                                            as={RouterLink}
+                                            to='/prompts'>                                            
+                                                Prompts
+                                        </ChakraLink>
+                                    </MenuItem>
+
+                                    <MenuItem>Link 2</MenuItem>
+                                    <MenuItem>Link 3</MenuItem>
+                                    <MenuItem>Link 4</MenuItem>
+
+                                </MenuList>
+                            </>
+
+                        )}
+
+
+
+                    </Menu>
+
+
                 </Flex>
             </Flex>
         </Box >
