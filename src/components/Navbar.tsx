@@ -6,9 +6,10 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 export function Navbar(){
     const { toggleColorMode } = useColorMode()
     const iconValue = useColorModeValue(<MoonIcon/>, <SunIcon/>)
+    const bgValue = useColorModeValue('background.100', 'background.800')
 
     return (
-        <HStack bg='secondary.200'>
+        <HStack bg={bgValue}>
             <ChakraLink
             as={RouterLink}
             to='/' >
