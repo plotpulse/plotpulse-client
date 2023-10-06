@@ -2,7 +2,7 @@ import { Stack, Flex, Heading, Button, Text, Image } from "@chakra-ui/react";
 
 export function Hero(){
     return (
-        <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
+        <Stack minH={'85vh'} direction={{ base: 'column', md: 'row' }}>
                 <Flex p={8} flex={1} align={'center'} justify={'center'}>
                     <Stack spacing={6} w={'full'} maxW={'lg'}>
                         <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
@@ -20,13 +20,13 @@ export function Hero(){
                                 variant='brandPrimary'>
                                 View Prompts
                             </Button>
-                            <Button variant='brandSecondary'>How It Works</Button>
+                            <Button variant='brandSecondary'>Learn More</Button>
                         </Stack>
                     </Stack>
                 </Flex>
                 <Flex flex={1}>
                     <Image
-                        alt={'Login Image'}
+                        alt={'Illustration of two women writing collaboratively.'}
 
                         src={'/notebook.svg'} />
                 </Flex>

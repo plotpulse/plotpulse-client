@@ -10,6 +10,7 @@ import styles from './styles'
 
 // Component style overrides
 import { buttonTheme } from './components/button'
+import { cardTheme } from "./components/card";
 
 const overrides: Record<string, any> = {
     config,
@@ -20,6 +21,7 @@ const overrides: Record<string, any> = {
     // // Other foundational style overrides go here
     components: {
       Button: buttonTheme,
+      Card: cardTheme
       // Other components go here
     },
 }
