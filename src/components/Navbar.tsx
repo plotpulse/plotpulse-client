@@ -1,9 +1,11 @@
-import { HStack, Link as ChakraLink, Button, useColorMode } from "@chakra-ui/react"
+import { HStack, Link as ChakraLink, Button, useColorMode, useColorModeValue, IconButton } from "@chakra-ui/react"
 import { Link as RouterLink } from 'react-router-dom'
 import { LoginButton, LogoutButton } from "."
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 
 export function Navbar(){
     const { toggleColorMode } = useColorMode()
+    const iconValue = useColorModeValue(<MoonIcon/>, <SunIcon/>)
 
     return (
         <HStack bg='secondary.200'>
@@ -17,9 +19,12 @@ export function Navbar(){
             to='/prompts' >
                 Prompts
             </ChakraLink>
-            <Button onClick={toggleColorMode}>Color</Button>
-            <LoginButton/>
-            <LogoutButton/>
+            <IconButton 
+            aria-label="Toggle Color Mode"
+            onClick={toggleColorMode}
+            icon={iconValue}>
+                
+              </IconButton>
 
 
         </HStack>
