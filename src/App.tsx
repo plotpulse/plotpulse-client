@@ -7,6 +7,8 @@ import { Home, PromptShow, PromptsIndex } from "./pages"
 import { Navbar } from "./components";
 
 function App() {
+
+  console.log(window.location.origin)
   const element = useRoutes([
     {
       path: "/",

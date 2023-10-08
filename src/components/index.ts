@@ -4,8 +4,12 @@
 export { Navbar } from './Navbar'
 export { PageWrapper } from './PageWrapper'
 export { Footer } from './Footer'
+
+////// AUTH COMPONENTS
 export { LoginButton } from "./LoginButton";
 export { LogoutButton } from "./LogoutButton";
+export { SignUpButton } from './SignUpButton'
+
 
 ///////////////////////////////////
 
@@ -16,6 +20,8 @@ export { AboutUs } from './AboutUs'
 
 
 ///////////////////////////////////
+
+
 
 
 

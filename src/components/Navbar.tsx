@@ -1,6 +1,6 @@
 import { HStack, Link as ChakraLink, Button, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image, MenuButton, Menu, MenuList, MenuItem } from "@chakra-ui/react"
 import { Link as RouterLink } from 'react-router-dom'
-import { LoginButton, LogoutButton } from "."
+import { LoginButton, LogoutButton, SignUpButton } from "."
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 
 export function Navbar() {
@@ -41,7 +41,6 @@ export function Navbar() {
                     <Menu>
                         {({ isOpen }) => (
                             <>
-
                                 <MenuButton as={IconButton}
                                     variant={'brandSecondary'}
                                     aria-label="Hamburger Menu"
@@ -60,18 +59,12 @@ export function Navbar() {
 
                                     <MenuItem><LoginButton/></MenuItem>
                                     <MenuItem><LogoutButton/></MenuItem>
-                                    <MenuItem>Link 4</MenuItem>
+                                    <MenuItem><SignUpButton/></MenuItem>
 
                                 </MenuList>
                             </>
-
                         )}
-
-
-
                     </Menu>
-
-
                 </Flex>
             </Flex>
         </Box >
