@@ -3,7 +3,7 @@ import { IUserProfile } from "../shared-types";
 const PROFILE_URL = import.meta.env.VITE_PROFILE_URL
 
 
-export async function getProfile(token: string, user: string): Promise<IUserProfile | null>{
+export async function getProfile(token: string, userEmail: string): Promise<IUserProfile | null>{
     try {
 
         const options: RequestInit = {
@@ -13,10 +13,10 @@ export async function getProfile(token: string, user: string): Promise<IUserProf
 
                 "Authorization": `bearer ${token}`
             },
-            body: user
         }
+        const url = `${PROFILE_URL}/${userEmail}`
 
-        const response = await fetch(PROFILE_URL, options)
+        const response = await fetch(url, options)
         if (response.ok){
             return response.json()
         } else {
@@ -32,4 +32,9 @@ export async function getProfile(token: string, user: string): Promise<IUserProf
         
     }
 
+}
+
+
+export async function createProfile(){
+    
 }
