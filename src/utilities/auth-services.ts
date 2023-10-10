@@ -1,9 +1,9 @@
-import { IUserProfile } from "../shared-types";
+import { IProfile } from "../shared-types";
 
 const PROFILE_URL = import.meta.env.VITE_PROFILE_URL
 
 
-export async function getProfile(token: string, userEmail: string): Promise<IUserProfile | null>{
+export async function getProfile(token: string, userEmail: string): Promise<IProfile | null>{
     try {
 
         const options: RequestInit = {
@@ -35,6 +35,33 @@ export async function getProfile(token: string, userEmail: string): Promise<IUse
 }
 
 
-export async function createProfile(){
-    
+export async function createProfile(data: IProfile){
+    try {
+
+        const options = {
+
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                
+            },
+            body: JSON.stringify(data)
+        }
+
+        const response = await fetch(PROFILE_URL, options)
+        
+
+        if (response.ok) {
+            return response.json()
+        } else {
+            throw new Error(response.statusText)
+        }
+
+    } catch (error) {
+        console.log(error)
+        return error
+
+    }
+
+
 }
