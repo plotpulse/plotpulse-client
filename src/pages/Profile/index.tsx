@@ -25,6 +25,7 @@ export function Profile() {
         genres: "a, b, c",
         bio: "abc"
     }
+    
 
     async function handleFetchProfile() {
         if (!user) {
