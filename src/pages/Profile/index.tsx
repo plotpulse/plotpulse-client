@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PageWrapper, SignUpForm } from "../../components"
+import { PageWrapper, SignUpForm, Dashboard } from "../../components"
 import { useAuth0 } from "@auth0/auth0-react";
 import { IProfile } from "../../shared-types";
 import { getProfile, createProfile } from "../../utilities/auth-services";
@@ -27,14 +27,25 @@ export function Profile() {
     }
 
     async function handleFetchProfile() {
+        if (!user) {
+            loginWithRedirect()
+            return
+        }
 
         try {
             const response = await getProfile(await getAccessTokenSilently(), email)
-            setProfile(response)
-            setIsLoading(false)
-            
+
+            if (response?.id === email){
+                setProfile(response)
+            } else {
+                throw new Error("There was an issue loading your associated profile.")
+            }
+
         } catch (error) {
-            
+            console.log(error)
+
+        } finally {
+            setIsLoading(false)
         }
 
     }
@@ -59,7 +70,21 @@ export function Profile() {
         }
     }
 
+    function loaded() {
+
+        console.log("checking profile @ loaded function", profile)
+
+        return (
+            <>
+                {profile ? <Dashboard /> : <SignUpForm />}
+
+            </>
+        )
+    }
+
     useEffect(() => { handleFetchProfile() }, [isLoading])
+
+
 
     return (
         <PageWrapper>
@@ -67,11 +92,7 @@ export function Profile() {
 
             <Button onClick={handleNewProfile}>Request handler</Button>
 
-            {/* {profile ? <Dashboard /> : <SignUpForm />} */}
-
-
-
-
+            {isLoading ? <p>Loading...</p> : loaded()}
 
         </PageWrapper>
     )

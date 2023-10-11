@@ -23,6 +23,7 @@ export { AboutUs } from './AboutUs'
 
 // PROFILE COMPONENTS
 export { SignUpForm } from './SignUpForm'
+export { Dashboard } from './Dashboard'
 
 
 
