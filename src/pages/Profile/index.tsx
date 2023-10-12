@@ -22,10 +22,10 @@ export function Profile() {
 
     const mockProfile: IProfile = {
         id: email,
-        genres: "a, b, c",
+        genres: ["a", "b", "c"],
         bio: "abc"
     }
-    
+
 
     async function handleFetchProfile() {
         if (!user) {
