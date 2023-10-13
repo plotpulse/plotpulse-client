@@ -51,33 +51,13 @@ export function Profile() {
 
     }
 
-
-
-
-    async function handleNewProfile() {
-        try {
-            if (!user) return
-
-
-            const profileResponse = await createProfile(mockProfile)
-            console.log(profileResponse)
-
-
-            // const token = await getAccessTokenSilently()
-            // const profResponse = await getProfile(token, email)
-
-        } catch (error) {
-
-        }
-    }
-
     function loaded() {
 
         console.log("checking profile @ loaded function", profile)
 
         return (
             <>
-                {profile ? <Dashboard /> : <SignUpForm />}
+                {profile ? <Dashboard /> : <SignUpForm email={email}/>}
 
             </>
         )
@@ -89,9 +69,7 @@ export function Profile() {
 
     return (
         <PageWrapper>
-            <Text>{user ? "Hello" : "Please log in"}</Text>
-
-            <Button onClick={handleNewProfile}>Request handler</Button>
+            <Text>{user ? `User is ${email}` : "Please log in"}</Text>
 
             {isLoading ? <p>Loading...</p> : loaded()}
 
