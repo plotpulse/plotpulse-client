@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { PageWrapper, SignUpForm, Dashboard } from "../../components"
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, RedirectLoginOptions, AuthorizationParams } from "@auth0/auth0-react";
 import { IProfile } from "../../shared-types";
 import { getProfile, createProfile } from "../../utilities/auth-services";
 import { Button, Text } from "@chakra-ui/react";
@@ -27,16 +27,24 @@ export function Profile() {
     // }
 
 
+
+    const options: RedirectLoginOptions = {
+        authorizationParams: { redirect_uri: "http://localhost:3000/signup" }
+
+
+    }
+
+
     async function handleFetchProfile() {
         if (!user) {
-            loginWithRedirect()
+            loginWithRedirect(options)
             return
         }
 
         try {
             const response = await getProfile(await getAccessTokenSilently(), email)
 
-            if (response?.id === email){
+            if (response?.id === email) {
                 setProfile(response)
             } else {
                 throw new Error("There was an issue loading your associated profile.")
@@ -57,7 +65,7 @@ export function Profile() {
 
         return (
             <>
-                {profile ? <Dashboard /> : <SignUpForm email={email}/>}
+                {profile ? <Dashboard /> : <SignUpForm email={email} />}
 
             </>
         )

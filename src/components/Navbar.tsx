@@ -1,7 +1,7 @@
 import { HStack, Link as ChakraLink, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image, MenuButton, Menu, MenuList, MenuItem } from "@chakra-ui/react"
 import { Link as RouterLink } from 'react-router-dom'
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import { useAuth0 } from '@auth0/auth0-react'
+import { useAuth0, RedirectLoginOptions } from '@auth0/auth0-react'
 
 export function Navbar() {
     const { toggleColorMode } = useColorMode()
@@ -11,12 +11,18 @@ export function Navbar() {
 
     const { user, loginWithRedirect, logout } = useAuth0()
 
+    const options: RedirectLoginOptions = {
+        authorizationParams: { redirect_uri: "http://localhost:5173/signup" }
+
+
+    }
+
     function clickHandler() {
         if(user){
             logout({logoutParams: { returnTo: window.location.origin}})
 
         } else {
-            loginWithRedirect()
+            loginWithRedirect(options)
         }
     }
 
