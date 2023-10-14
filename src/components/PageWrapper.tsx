@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react"
-import { motion } from "framer-motion"
+import { MotionValue, motion } from "framer-motion"
 
 import { ReactNode } from "react"
 

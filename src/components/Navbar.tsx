@@ -22,7 +22,7 @@ export function Navbar() {
             logout({logoutParams: { returnTo: window.location.origin}})
 
         } else {
-            loginWithRedirect(options)
+            loginWithRedirect()
         }
     }
 
