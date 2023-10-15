@@ -12,6 +12,7 @@ export function SignUpForm({ email }: Props) {
 
     const [profileForm, setProfileForm] = useState<IProfile>({
         id: email,
+        handle: "",
         roles: [],
         genres: [],
         bio: "",

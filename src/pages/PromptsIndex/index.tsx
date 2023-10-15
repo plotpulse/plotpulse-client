@@ -8,6 +8,7 @@ function getRandomid() {
 
 const user: IProfile = {
     id: "matthewbuiltthat@gmail.com",
+    handle: "immortal_gift"
 }
 
 const mockPrompts: IPrompt[] = [
