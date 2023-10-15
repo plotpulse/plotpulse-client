@@ -1,13 +1,31 @@
-import { HStack, Link as ChakraLink, Button, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image, MenuButton, Menu, MenuList, MenuItem } from "@chakra-ui/react"
+import { HStack, Link as ChakraLink, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image, MenuButton, Menu, MenuList, MenuItem } from "@chakra-ui/react"
 import { Link as RouterLink } from 'react-router-dom'
-import { LoginButton, LogoutButton } from "."
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
+import { useAuth0, RedirectLoginOptions } from '@auth0/auth0-react'
 
 export function Navbar() {
     const { toggleColorMode } = useColorMode()
     const iconValue = useColorModeValue(<MoonIcon />, <SunIcon />)
     const bgValue = useColorModeValue('background.100', 'background.800')
     const srcValue = useColorModeValue('/black-books.svg', '/white-books.svg')
+
+    const { user, loginWithRedirect, logout } = useAuth0()
+
+    const options: RedirectLoginOptions = {
+        authorizationParams: { redirect_uri: "http://localhost:5173/signup" }
+
+
+    }
+
+    function clickHandler() {
+        if(user){
+            logout({logoutParams: { returnTo: window.location.origin}})
+
+        } else {
+            loginWithRedirect(options)
+        }
+    }
+
 
     return (
         <Box bg={bgValue} p={4}>
@@ -41,7 +59,6 @@ export function Navbar() {
                     <Menu>
                         {({ isOpen }) => (
                             <>
-
                                 <MenuButton as={IconButton}
                                     variant={'brandSecondary'}
                                     aria-label="Hamburger Menu"
@@ -51,27 +68,31 @@ export function Navbar() {
                                 <MenuList>
                                     <MenuItem>
                                         <ChakraLink
-                                            borderRadius={'.25rem'}
                                             as={RouterLink}
-                                            to='/prompts'>                                            
-                                                Prompts
+                                            to='/prompts'>
+                                            Prompts
                                         </ChakraLink>
                                     </MenuItem>
 
-                                    <MenuItem><LoginButton/></MenuItem>
-                                    <MenuItem><LogoutButton/></MenuItem>
-                                    <MenuItem>Link 4</MenuItem>
+                                    <MenuItem>
+                                        <ChakraLink
+                                            as={RouterLink}
+                                            to='/profile'>
+                                            {user ? "Profile": "Sign Up"}
+                                        </ChakraLink>
+                                    </MenuItem>
 
+                                    <MenuItem>
+                                        <Box
+                                            onClick={clickHandler}
+                                        >
+                                            {user ? "Log Out": "Log In"}
+                                        </Box>
+                                    </MenuItem>
                                 </MenuList>
                             </>
-
                         )}
-
-
-
                     </Menu>
-
-
                 </Flex>
             </Flex>
         </Box >
