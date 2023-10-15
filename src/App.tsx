@@ -24,7 +24,7 @@ function App() {
       element: <PromptShow />
     },
     {
-      path: "/profile",
+      path: "/profile/",
       element: <Profile />
     },
     {

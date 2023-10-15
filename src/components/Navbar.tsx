@@ -12,16 +12,18 @@ export function Navbar() {
     const { user, loginWithRedirect, logout } = useAuth0()
 
     const options: RedirectLoginOptions = {
-        authorizationParams: { redirect_uri: "http://localhost:5173/signup" }
+        authorizationParams: { redirect_uri: "http://localhost:5173/profile" }
 
 
     }
 
     function clickHandler() {
+        console.log(options)
         if(user){
             logout({logoutParams: { returnTo: window.location.origin}})
 
         } else {
+            console.log(options)
             loginWithRedirect(options)
         }
     }
