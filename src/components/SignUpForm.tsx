@@ -14,10 +14,10 @@ export function SignUpForm({ email }: Props) {
     const defaultForm: IProfile = {
         id: email,
         displayName: "",
-        roles: [], 
+        roles: [],
         genres: [],
         bio: "",
-        details:"",
+        details: "",
     }
 
     const [profileForm, setProfileForm] = useState<IProfile>(defaultForm)
@@ -34,7 +34,7 @@ export function SignUpForm({ email }: Props) {
             if (profileResponse.id === email) {
                 setProfileForm(defaultForm)
                 navigate("/profile")
-                
+
             } else {
                 throw new Error("There was an issue creating your profile.")
             }
@@ -62,9 +62,9 @@ export function SignUpForm({ email }: Props) {
     }
 
     return (
-        <Box>
+        <Box p={12}>
             <form onSubmit={handleSubmit}>
-            <FormControl>
+                <FormControl>
                     <FormLabel>Display Name</FormLabel>
                     <Input name="displayName" value={profileForm.displayName} onChange={handleChange}></Input>
                     <FormHelperText>
