@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IProfile } from "../shared-types";
 import { createProfile } from "../utilities/auth-services";
-import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, Input, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 
 interface Props {
@@ -54,7 +54,7 @@ export function SignUpForm({ email }: Props) {
         setProfileForm({ ...profileForm, genres: newValues })
     }
 
-    function handleChange(evt: ChangeEvent<HTMLTextAreaElement>) {
+    function handleChange(evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
         const { name, value } = evt.target
         setProfileForm({ ...profileForm, [name]: value })
 
@@ -64,6 +64,17 @@ export function SignUpForm({ email }: Props) {
     return (
         <Box>
             <form onSubmit={handleSubmit}>
+            <FormControl>
+                    <FormLabel>Display Name</FormLabel>
+                    <Input name="displayName" value={profileForm.displayName} onChange={handleChange}></Input>
+                    <FormHelperText>
+                        How you'll be publicly identified - choose wisely, you can't change this.
+
+                    </FormHelperText>
+
+                </FormControl>
+
+
                 <FormControl>
                     <FormLabel>Are you...?</FormLabel>
                     <CheckboxGroup defaultValue={profileForm.roles} onChange={handleRoleChange}>
