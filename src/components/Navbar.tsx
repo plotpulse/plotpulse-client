@@ -11,21 +11,16 @@ export function Navbar() {
 
     const { user, loginWithRedirect, logout } = useAuth0()
 
-    const options: RedirectLoginOptions = {
+    // REFACTOR to an env, possibly with a "constants" import folder
+    // REFACTOR to handle for deployment
+
+    const signup: RedirectLoginOptions = {
         authorizationParams: { redirect_uri: "http://localhost:5173/signup" }
-
-
     }
 
-    function clickHandler() {
-        if(user){
-            logout({logoutParams: { returnTo: window.location.origin}})
-
-        } else {
-            loginWithRedirect(options)
-        }
+    const login: RedirectLoginOptions = {
+        authorizationParams: { redirect_uri: "http://localhost:5173" }
     }
-
 
     return (
         <Box bg={bgValue} p={4}>
@@ -74,21 +69,31 @@ export function Navbar() {
                                         </ChakraLink>
                                     </MenuItem>
 
-                                    <MenuItem>
-                                        <ChakraLink
-                                            as={RouterLink}
-                                            to='/profile'>
-                                            {user ? "Profile": "Sign Up"}
-                                        </ChakraLink>
-                                    </MenuItem>
+                                    {user ?
+                                        <>
+                                            <MenuItem>
+                                                <ChakraLink
+                                                    as={RouterLink}
+                                                    to='/profile'>
+                                                    Profile
+                                                </ChakraLink>
+                                            </MenuItem>
 
-                                    <MenuItem>
-                                        <Box
-                                            onClick={clickHandler}
-                                        >
-                                            {user ? "Log Out": "Log In"}
-                                        </Box>
-                                    </MenuItem>
+                                            <MenuItem onClick={() => logout()}>
+                                                Log Out
+                                            </MenuItem>
+                                        </>
+
+                                        :
+                                        <>
+                                            <MenuItem onClick={() => loginWithRedirect(signup)}>
+                                                Sign Up
+                                            </MenuItem>
+
+                                            <MenuItem onClick={() => loginWithRedirect(login)}>
+                                                Log In
+                                            </MenuItem>
+                                        </>}
                                 </MenuList>
                             </>
                         )}

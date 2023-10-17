@@ -1,6 +1,12 @@
+import { PageWrapper } from "../../components";
+
+
 export function SignUp(){
 
     return (
-        <p>For testing redirct after login</p>
+        <PageWrapper>
+            
+            
+        </PageWrapper>
     )
 }
