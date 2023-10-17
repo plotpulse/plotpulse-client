@@ -1,7 +1,7 @@
-import { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { IProfile } from "../shared-types";
 import { createProfile } from "../utilities/auth-services";
-import { Box, FormControl, FormLabel, FormHelperText, FormErrorMessage, Input, Button, CheckboxGroup, Stack, Checkbox, Textarea, } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 
 interface Props {
@@ -11,18 +11,20 @@ interface Props {
 
 export function SignUpForm({ email }: Props) {
 
-    const [profileForm, setProfileForm] = useState<IProfile>({
+    const defaultForm: IProfile = {
         id: email,
         displayName: "",
-        roles: [],
+        roles: [], 
         genres: [],
         bio: "",
         details:"",
-    })
+    }
+
+    const [profileForm, setProfileForm] = useState<IProfile>(defaultForm)
 
     const navigate = useNavigate()
 
-    async function handleSubmit(evt: SubmitEvent) {
+    async function handleSubmit(evt: FormEvent) {
 
         evt.preventDefault()
 
@@ -30,7 +32,7 @@ export function SignUpForm({ email }: Props) {
             const profileResponse = await createProfile(profileForm)
 
             if (profileResponse.id === email) {
-                setProfileForm
+                setProfileForm(defaultForm)
                 navigate("/profile")
                 
             } else {
