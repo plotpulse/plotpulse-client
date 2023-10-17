@@ -1,7 +1,8 @@
-import { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import { IProfile } from "../shared-types";
 import { createProfile } from "../utilities/auth-services";
-import { Box, FormControl, FormLabel, FormHelperText, FormErrorMessage, Input, Button, CheckboxGroup, Stack, Checkbox, Textarea, } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, Input, } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 
 interface Props {
     email: string;
@@ -10,23 +11,29 @@ interface Props {
 
 export function SignUpForm({ email }: Props) {
 
-    const [profileForm, setProfileForm] = useState<IProfile>({
+    const defaultForm: IProfile = {
         id: email,
-        handle: "",
         roles: [],
         genres: [],
         bio: "",
-        details:"",
-    })
+        details: "",
+    }
 
-    async function handleSubmit() {
+    const [profileForm, setProfileForm] = useState<IProfile>(defaultForm)
+
+    const navigate = useNavigate()
+
+    async function handleSubmit(evt: FormEvent) {
+
+        evt.preventDefault()
 
         try {
             const profileResponse = await createProfile(profileForm)
 
             if (profileResponse.id === email) {
-                // navigate("/profile")
-                window.location.reload()
+                setProfileForm(defaultForm)
+                navigate("/profile")
+
             } else {
                 throw new Error("There was an issue creating your profile.")
             }
@@ -46,7 +53,7 @@ export function SignUpForm({ email }: Props) {
         setProfileForm({ ...profileForm, genres: newValues })
     }
 
-    function handleChange(evt: ChangeEvent<HTMLTextAreaElement>) {
+    function handleChange(evt: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
         const { name, value } = evt.target
         setProfileForm({ ...profileForm, [name]: value })
 
@@ -54,8 +61,19 @@ export function SignUpForm({ email }: Props) {
     }
 
     return (
-        <Box>
-            <form>
+        <Box p={12}>
+            <form onSubmit={handleSubmit}>
+                <FormControl>
+                    <FormLabel>Display Name</FormLabel>
+                    <Input name="displayName" value={profileForm.displayName} onChange={handleChange}></Input>
+                    <FormHelperText>
+                        How you'll be publicly identified - choose wisely, you can't change this.
+
+                    </FormHelperText>
+
+                </FormControl>
+
+
                 <FormControl>
                     <FormLabel>Are you...?</FormLabel>
                     <CheckboxGroup defaultValue={profileForm.roles} onChange={handleRoleChange}>
@@ -117,12 +135,7 @@ export function SignUpForm({ email }: Props) {
                 </FormControl>
 
                 <Button type='submit'>Create my Profile</Button>
-
-
-
             </form>
-
-
 
         </Box>
     )
