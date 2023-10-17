@@ -1,6 +1,6 @@
 import { IPrompt } from "../shared-types";
 
-import { Text, Card, CardHeader, CardBody, CardFooter, HStack, Button, Box, VStack, Stack, SimpleGrid } from "@chakra-ui/react";
+import { Text, Card, CardHeader, CardBody, CardFooter, HStack, Button, Box, VStack, Stack, SimpleGrid, IconButton } from "@chakra-ui/react";
 
 import { AddIcon, StarIcon } from '@chakra-ui/icons'
 import { useState } from "react";
@@ -33,15 +33,17 @@ function PromptCard({ prompt }: PromptCardProps) {
                 <Text onClick={handleExpand} noOfLines={lineValue}>{content}</Text>
             </CardBody>
             <CardFooter>
-                <HStack>
+                <HStack spacing={12}>
                     <HStack>
                         <Text>{replies?.length}</Text>
-                        <Button leftIcon={<AddIcon/>}>Reply</Button>
+                        <AddIcon/>
                     </HStack>
 
                     <HStack>
                         <Text>{likes?.length}</Text>
-                        <Button leftIcon={<StarIcon/>}>Like</Button>
+                        <StarIcon
+                        
+                        fill={"red"}/>
                     </HStack>
                 </HStack>
             </CardFooter>
