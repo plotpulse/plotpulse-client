@@ -2,6 +2,7 @@ import { ChangeEvent, ChangeEventHandler, useState } from "react";
 import { IProfile } from "../shared-types";
 import { createProfile } from "../utilities/auth-services";
 import { Box, FormControl, FormLabel, FormHelperText, FormErrorMessage, Input, Button, CheckboxGroup, Stack, Checkbox, Textarea, } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
 
 interface Props {
     email: string;
@@ -12,20 +13,26 @@ export function SignUpForm({ email }: Props) {
 
     const [profileForm, setProfileForm] = useState<IProfile>({
         id: email,
+        displayName: "",
         roles: [],
         genres: [],
         bio: "",
         details:"",
     })
 
-    async function handleSubmit() {
+    const navigate = useNavigate()
+
+    async function handleSubmit(evt: SubmitEvent) {
+
+        evt.preventDefault()
 
         try {
             const profileResponse = await createProfile(profileForm)
 
             if (profileResponse.id === email) {
-                // navigate("/profile")
-                window.location.reload()
+                setProfileForm
+                navigate("/profile")
+                
             } else {
                 throw new Error("There was an issue creating your profile.")
             }
@@ -54,7 +61,7 @@ export function SignUpForm({ email }: Props) {
 
     return (
         <Box>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <FormControl>
                     <FormLabel>Are you...?</FormLabel>
                     <CheckboxGroup defaultValue={profileForm.roles} onChange={handleRoleChange}>
@@ -116,12 +123,7 @@ export function SignUpForm({ email }: Props) {
                 </FormControl>
 
                 <Button type='submit'>Create my Profile</Button>
-
-
-
             </form>
-
-
 
         </Box>
     )
