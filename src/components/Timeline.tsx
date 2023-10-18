@@ -14,7 +14,7 @@ interface PromptCardProps {
 }
 
 function PromptCard({ prompt }: PromptCardProps) {
-    const { id, content, user, likes, replies, } = prompt
+    const { id, content, user, stars, replies, } = prompt
     const [lineValue, setLineValue ] = useState(6)
 
     function handleExpand(){
@@ -28,7 +28,7 @@ function PromptCard({ prompt }: PromptCardProps) {
 
     return (
         <Card variant={"main"} mx={4}>
-            <CardHeader>#{id} from @{user.handle}</CardHeader>
+            <CardHeader>#{id} from @{user.displayName}</CardHeader>
             <CardBody>
                 <Text onClick={handleExpand} noOfLines={lineValue}>{content}</Text>
             </CardBody>
@@ -40,7 +40,7 @@ function PromptCard({ prompt }: PromptCardProps) {
                     </HStack>
 
                     <HStack>
-                        <Text>{likes?.length}</Text>
+                        <Text>{stars?.length}</Text>
                         <StarIcon
                         
                         fill={"red"}/>

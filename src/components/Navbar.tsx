@@ -18,6 +18,10 @@ export function Navbar() {
         authorizationParams: { redirect_uri: "http://localhost:5173/signup" }
     }
 
+    const login: RedirectLoginOptions = {
+        authorizationParams: { redirect_uri: "http://localhost:5173/profile" }
+    }
+
     return (
         <Box bg={bgValue} p={4}>
             <Flex direction={'row'} justifyContent={'space-between'} alignItems={'center'}>

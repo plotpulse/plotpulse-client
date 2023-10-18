@@ -13,6 +13,7 @@ export function SignUpForm({ email }: Props) {
 
     const defaultForm: IProfile = {
         id: email,
+        displayName: "",
         roles: [],
         genres: [],
         bio: "",
