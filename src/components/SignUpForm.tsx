@@ -118,7 +118,6 @@ export function SignUpForm({ email }: Props) {
                             <Checkbox value='mystery'>Mystery</Checkbox>
                             <Checkbox value='horror'>Horror</Checkbox>
                             <Checkbox value='adventure'>Adventure</Checkbox>
-
                         </Stack>
                     </CheckboxGroup>
                     <FormHelperText>What are you interested in?</FormHelperText>
