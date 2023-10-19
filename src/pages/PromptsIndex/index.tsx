@@ -335,12 +335,12 @@ export function PromptsIndex() {
 
 
     return (
-        <PageWrapper maxH={'85vh'} overflow={'hidden'}>
-            <Box>
+        <PageWrapper overflow={'hidden'} maxH={'90vh'}>
+           
             
             {isLoading ? <p>Loading...</p> : loaded()}
 
-            </Box>
+            
             
 
 

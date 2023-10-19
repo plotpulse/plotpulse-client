@@ -64,7 +64,7 @@ export const Timeline = forwardRef((props: TimeLineProps, ref: ForwardedRef<HTML
     console.log('ref in TL', ref)
 
     return (
-        <Stack ref={ref} p={{sm: 4, md: 12}} spacing={4} overflow={'scroll'} maxH={'100vh'}>
+        <Stack ref={ref} p={{sm: 4, md: 12}} paddingBottom={24} spacing={4} overflow={'scroll'} maxH={'80vh'}>
             {cards}
 
         </Stack>

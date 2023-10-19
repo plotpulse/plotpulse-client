@@ -7,7 +7,7 @@ interface TimelineHeaderProps extends BoxProps {
 export function TimelineHeader({topOfTl}: TimelineHeaderProps) {
 
     return (
-        <Box p={8} shadow={"2xl"} position={'unset'}>
+        <Box p={8} shadow={"2xl"}>
             <Flex direction={['column', 'row']} alignItems={'center'} justifyContent={'space-between'}>
                 <Button>New Prompt</Button>
                 <Button onClick={() => topOfTl()}>Back to top</Button>
