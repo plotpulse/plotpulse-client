@@ -30,6 +30,7 @@ export { Dashboard } from './Dashboard'
 // PROMPT INDEX COMPONENTS
 export { TimelineHeader } from './TimelineHeader'
 export { Timeline } from './Timeline'
+export { PromptCard } from './PromptCard'
 
 
 

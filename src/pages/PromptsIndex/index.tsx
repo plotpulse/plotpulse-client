@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef, RefObject, Ref } from "react";
+import { useState, useEffect, useRef, Ref } from "react";
 import { PageWrapper, TimelineHeader, Timeline } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
-import { Box } from "@chakra-ui/react";
+
 
 function getRandomid() {
     return Math.floor(Math.random() * 500 + Math.random() * 500 + Math.random() * 500)
@@ -306,9 +306,8 @@ export function PromptsIndex() {
     }
 
     function topOfTl(){
-        console.log(tlRef)
         // there is a typescript warning but it doesn't stop the functionality
-        if (tlRef.current){
+        if (tlRef){
             tlRef.current.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -325,7 +324,7 @@ export function PromptsIndex() {
         return (
             <>
             <TimelineHeader topOfTl={topOfTl}/>
-            <Timeline prompts={prompts} ref={tlRef}/>
+            <Timeline prompts={prompts} ref={tlRef as Ref<HTMLDivElement>}/>
             
             </>
             
