@@ -1,12 +1,13 @@
 import { IPrompt } from "../shared-types";
 
-import { Text, Card, CardHeader, CardBody, CardFooter, HStack, Button, Box, VStack, Stack, SimpleGrid, IconButton } from "@chakra-ui/react";
+import { Text, Card, CardHeader, CardBody, CardFooter, HStack, Button, Box, VStack, Stack, SimpleGrid, IconButton, BoxProps, StackProps } from "@chakra-ui/react";
 
 import { AddIcon, StarIcon } from '@chakra-ui/icons'
-import { useState } from "react";
+import { MutableRefObject, RefObject, PropsWithRef, useState, LegacyRef, forwardRef, ForwardedRef } from "react";
 
-interface TimeLineProps {
+interface TimeLineProps extends StackProps {
     prompts: IPrompt[] | null;
+    
 }
 
 interface PromptCardProps {
@@ -53,19 +54,28 @@ function PromptCard({ prompt }: PromptCardProps) {
 }
 
 
-
-export function Timeline({ prompts }: TimeLineProps) {
-
+export const Timeline = forwardRef((props: TimeLineProps, ref: ForwardedRef<HTMLDivElement>) => {
+    const { prompts } = props;
     const cards = prompts?.map(prompt => {
         return (
             <PromptCard key={prompt.id} prompt={prompt} />
         )
     })
+    console.log('ref in TL', ref)
 
     return (
-        <Stack p={{sm: 4, md: 12}} spacing={4} overflow={'scroll'} maxH={'100vh'}>
+        <Stack ref={ref} p={{sm: 4, md: 12}} spacing={4} overflow={'scroll'} maxH={'100vh'}>
             {cards}
 
         </Stack>
     )
-}
+
+})
+
+
+
+
+// export function Timeline({ prompts, ref }: TimeLineProps) {
+
+    
+// }

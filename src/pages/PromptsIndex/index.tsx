@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, RefObject, Ref } from "react";
 import { PageWrapper, TimelineHeader, Timeline } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
 import { Box } from "@chakra-ui/react";
@@ -289,6 +289,8 @@ export function PromptsIndex() {
 
     const [prompts, setPrompts] = useState<IPrompt[] | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const tlRef: Ref<HTMLDivElement | undefined> = useRef();
+
 
     async function handleFetchPrompts(){
         try {
@@ -303,14 +305,27 @@ export function PromptsIndex() {
         }
     }
 
+    function topOfTl(){
+        console.log(tlRef)
+        // there is a typescript warning but it doesn't stop the functionality
+        if (tlRef.current){
+            tlRef.current.scrollTop = 0
+
+        }
+    }
+
 
     useEffect(() => { handleFetchPrompts() }, [isLoading])
 
     function loaded(){
 
         return (
+            <>
+            <TimelineHeader topOfTl={topOfTl}/>
+            <Timeline prompts={prompts} ref={tlRef}/>
             
-            <Timeline prompts={prompts}/>
+            </>
+            
         )
 
     }
@@ -319,7 +334,7 @@ export function PromptsIndex() {
     return (
         <PageWrapper maxH={'85vh'} overflow={'hidden'}>
             <Box>
-            <TimelineHeader />
+            
             {isLoading ? <p>Loading...</p> : loaded()}
 
             </Box>
