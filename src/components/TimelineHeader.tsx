@@ -1,12 +1,20 @@
-import { Box, Heading } from "@chakra-ui/react"
+import { Box, Button, Flex, HStack, Heading } from "@chakra-ui/react"
 
-export function TimelineHeader(){
+export function TimelineHeader() {
 
     return (
-        <Box p={8}>
-            <Heading>Prompts</Heading>
-            <Heading size={{base: "xs", md: "sm"}}>Like, Reply or Create</Heading>
+        <Box p={8} shadow={"2xl"}>
+            <Flex direction={['column', 'row']} alignItems={'center'} justifyContent={'space-between'}>
+                <Button>New Prompt</Button>
+                <Button>Back to top</Button>
+                <Button>Clear Filters</Button>
+            </Flex>
 
-        </Box>
+
+
+
+
+
+        </Box >
     )
 }
