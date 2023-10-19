@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { PageWrapper, TimelineHeader, Timeline } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
+import { Box } from "@chakra-ui/react";
 
 function getRandomid() {
     return Math.floor(Math.random() * 500 + Math.random() * 500 + Math.random() * 500)
@@ -316,9 +317,13 @@ export function PromptsIndex() {
 
 
     return (
-        <PageWrapper>
+        <PageWrapper maxH={'85vh'} overflow={'hidden'}>
+            <Box>
             <TimelineHeader />
             {isLoading ? <p>Loading...</p> : loaded()}
+
+            </Box>
+            
 
 
         </PageWrapper>

@@ -63,7 +63,7 @@ export function Timeline({ prompts }: TimeLineProps) {
     })
 
     return (
-        <Stack p={{sm: 4, md: 12}} spacing={4} >
+        <Stack p={{sm: 4, md: 12}} spacing={4} overflow={'scroll'} maxH={'100vh'}>
             {cards}
 
         </Stack>
