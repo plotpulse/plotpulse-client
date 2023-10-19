@@ -309,7 +309,10 @@ export function PromptsIndex() {
         console.log(tlRef)
         // there is a typescript warning but it doesn't stop the functionality
         if (tlRef.current){
-            tlRef.current.scrollTop = 0
+            tlRef.current.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
 
         }
     }
