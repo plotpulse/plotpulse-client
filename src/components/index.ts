@@ -31,6 +31,7 @@ export { Dashboard } from './Dashboard'
 export { TimelineHeader } from './TimelineHeader'
 export { Timeline } from './Timeline'
 export { PromptCard } from './PromptCard'
+export { GenreFilterButton} from './GenreFilterButton'
 
 
 

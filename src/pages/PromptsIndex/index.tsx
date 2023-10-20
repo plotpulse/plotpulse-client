@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, Ref } from "react";
-import { PageWrapper, TimelineHeader, Timeline } from "../../components"
+import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
+import { Badge, Box, Button, Flex, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
 
 
 function getRandomid() {
@@ -19,8 +20,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -28,8 +29,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -37,8 +38,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -46,8 +47,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -55,16 +56,16 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(), content: "In a modern city where the line between human and supernatural blurs, I investigate bizarre crimes that put me face to face with the unknown.",
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -72,8 +73,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -81,8 +82,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -90,8 +91,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -99,8 +100,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -108,8 +109,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'supernatural'],
+
     },
     {
         id: getRandomid(),
@@ -117,8 +118,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'supernatural'],
+
     },
     {
         id: getRandomid(),
@@ -126,8 +127,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -135,8 +136,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -144,8 +145,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -153,8 +154,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -162,8 +163,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -171,8 +172,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -180,8 +181,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -189,8 +190,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -198,8 +199,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -207,8 +208,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -216,8 +217,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -225,8 +226,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -234,8 +235,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -243,8 +244,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -252,8 +253,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -261,8 +262,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -270,8 +271,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -279,35 +280,81 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
 
 ];
 
+const allGenres = [
+    "science fiction",
+    "fantasy",
+    "romance",
+    "dystopian",
+    "mystery"
+];
+
+
 export function PromptsIndex() {
 
     const [prompts, setPrompts] = useState<IPrompt[] | null>(null)
+    const [filters, setFilters] = useState<string[]>(allGenres)
+    const [filteredPrompts, setFilteredPrompts] = useState<IPrompt[] | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const tlRef: Ref<HTMLDivElement | undefined> = useRef();
 
+    function containsAny(sourceGenres: string[], targetGenres: string[]): boolean {
+        for (const item of targetGenres) {
+            console.log('contains any', item)
+            if (sourceGenres.includes(item)) {
+                return true
+            }
 
-    async function handleFetchPrompts(){
+        }
+        return false
+    }
+
+    function filterPrompts() {
+        
+        setFilteredPrompts(prompts?.filter(prompt =>
+            containsAny(prompt.genres, filters)
+        ))
+
+    }
+
+    function handleFilter(newFilter: string) {
+        console.log('handleFilter func')
+
+        if (filters.includes(newFilter)) {
+            const newFilters = filters.filter(item => item !== newFilter)
+            console.log('new filters true', newFilters)
+            setFilters(newFilters)
+        } else {
+            const newFilters = [...filters, newFilter]
+            console.log('new filters false', newFilters)
+            setFilters(newFilters)
+        }
+
+    }
+
+
+    async function handleFetchPrompts() {
         try {
             // actually fetch from db soon
-            const response = [...mockPrompts].sort((a,b) => a.id - b.id)
+            const response = [...mockPrompts].sort((a, b) => a.id - b.id)
             //prompts should be in a different order each page reload
             setPrompts(response)
+            setFilteredPrompts(response)
             setIsLoading(false)
-            
+
         } catch (error) {
-            
+
         }
     }
 
-    function topOfTl(){
+    function topOfTl() {
         // there is a typescript warning but it doesn't stop the functionality
-        if (tlRef){
+        if (tlRef) {
             tlRef.current.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -318,16 +365,36 @@ export function PromptsIndex() {
 
 
     useEffect(() => { handleFetchPrompts() }, [isLoading])
+    useEffect(() => {filterPrompts()}, [filters])
 
-    function loaded(){
+    function loaded() {
 
         return (
             <>
-            <TimelineHeader topOfTl={topOfTl}/>
-            <Timeline prompts={prompts} ref={tlRef as Ref<HTMLDivElement>}/>
-            
+                <TimelineHeader topOfTl={topOfTl} />
+                <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
+
+                    <GridItem colSpan={9}>
+                        <Timeline prompts={filteredPrompts} ref={tlRef as Ref<HTMLDivElement>} />
+
+                    </GridItem>
+
+                    <GridItem colSpan={3} w={'100%'} >
+                        <Box border={'1px'} borderColor={'red'} h={'80vh'}>
+                            {allGenres.map((genre, idx) => {
+
+                                return (
+                                    <GenreFilterButton key={idx} genre={genre} handleFilter={handleFilter} />
+                                )
+                            })}
+
+                        </Box>
+
+                    </GridItem>
+                </Grid>
+
             </>
-            
+
         )
 
     }
@@ -335,12 +402,12 @@ export function PromptsIndex() {
 
     return (
         <PageWrapper overflow={'hidden'} maxH={'90vh'}>
-           
-            
+
+
             {isLoading ? <p>Loading...</p> : loaded()}
 
-            
-            
+
+
 
 
         </PageWrapper>
