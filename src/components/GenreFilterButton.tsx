@@ -19,7 +19,7 @@ export function GenreFilterButton({genre, handleFilter, filters}: GenreFilterBut
     useEffect(() => {setIsActive(filters.includes(genre))}, [filters])
 
     return (
-        <Button variant={isActive ? 'brandPrimary' : 'ghost'} onClick={handleClick} size={'sm'}>
+        <Button variant={isActive ? 'brandPrimary' : 'ghost'} onClick={handleClick} size={['xs', null, 'sm']}>
             {genre.toUpperCase()}
         </Button>
     )
