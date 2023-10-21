@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, Ref } from "react";
 import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
 import { Badge, Box, Button, Flex, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
-
+import { ALL_GENRES } from "../../constants";
 
 function getRandomid() {
     return Math.floor(Math.random() * 500 + Math.random() * 500 + Math.random() * 500)
@@ -286,19 +286,11 @@ const mockPrompts: IPrompt[] = [
 
 ];
 
-const allGenres = [
-    "science fiction",
-    "fantasy",
-    "romance",
-    "dystopian",
-    "mystery"
-];
-
 
 export function PromptsIndex() {
 
     const [prompts, setPrompts] = useState<IPrompt[] | null>(null)
-    const [filters, setFilters] = useState<string[]>(allGenres)
+    const [filters, setFilters] = useState<string[]>(ALL_GENRES)
     const [filteredPrompts, setFilteredPrompts] = useState<IPrompt[] | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const tlRef: Ref<HTMLDivElement | undefined> = useRef();
@@ -344,7 +336,6 @@ export function PromptsIndex() {
             const response = [...mockPrompts].sort((a, b) => a.id - b.id)
             //prompts should be in a different order each page reload
             setPrompts(response)
-            setFilteredPrompts(response)
             setIsLoading(false)
 
         } catch (error) {
@@ -365,13 +356,13 @@ export function PromptsIndex() {
 
 
     useEffect(() => { handleFetchPrompts() }, [isLoading])
-    useEffect(() => {filterPrompts()}, [filters])
+    useEffect(() => { filterPrompts() }, [filters, prompts])
 
     function loaded() {
 
         return (
             <>
-                <TimelineHeader topOfTl={topOfTl} />
+                <TimelineHeader topOfTl={topOfTl} filters={filters} setFilters={setFilters}/>
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
 
                     <GridItem colSpan={9}>
@@ -381,10 +372,10 @@ export function PromptsIndex() {
 
                     <GridItem colSpan={3} w={'100%'} >
                         <Box border={'1px'} borderColor={'red'} h={'80vh'}>
-                            {allGenres.map((genre, idx) => {
+                            {ALL_GENRES.map((genre, idx) => {
 
                                 return (
-                                    <GenreFilterButton key={idx} genre={genre} handleFilter={handleFilter} />
+                                    <GenreFilterButton key={idx} genre={genre} handleFilter={handleFilter} filters={filters}/>
                                 )
                             })}
 
