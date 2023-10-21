@@ -1,5 +1,4 @@
 import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge } from "@chakra-ui/react";
-import { useState } from "react";
 import { IPrompt } from "../shared-types";
 import { AddIcon, StarIcon } from '@chakra-ui/icons'
 
@@ -8,17 +7,7 @@ interface PromptCardProps {
 }
 
 export function PromptCard({ prompt }: PromptCardProps) {
-    const { id, content, user, stars, replies, genres } = prompt
-    const [lineValue, setLineValue ] = useState(6)
-
-    function handleExpand(){
-        if (lineValue === 6){
-            setLineValue(100)
-            return
-        }
-        setLineValue(6)
-    }
-
+    const { content, user, stars, replies, genres } = prompt
 
     return (
         <Card variant={"main"} mx={4}>
@@ -32,7 +21,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 })}
             </CardHeader>
             <CardBody>
-                <Text onClick={handleExpand} noOfLines={lineValue}>{content}</Text>
+                <Text>{content}</Text>
             </CardBody>
             <CardFooter>
                 <HStack spacing={12}>

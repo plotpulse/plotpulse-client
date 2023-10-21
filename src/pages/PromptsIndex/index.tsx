@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, Ref } from "react";
 import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
-import { Badge, Box, Button, Flex, Grid, GridItem, SimpleGrid } from "@chakra-ui/react";
+import { Box, Grid, GridItem,  } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 
 function getRandomid() {
@@ -310,7 +310,7 @@ export function PromptsIndex() {
         
         setFilteredPrompts(prompts?.filter(prompt =>
             containsAny(prompt.genres, filters)
-        ))
+        ) ?? null )
 
     }
 
@@ -345,8 +345,12 @@ export function PromptsIndex() {
 
     function topOfTl() {
         // there is a typescript warning but it doesn't stop the functionality
+        
+        
         if (tlRef) {
-            tlRef.current.scrollTo({
+            // i can't figure out this type error but tt is non-blocking
+            const timelineComponent: HTMLDivElement = tlRef?.current 
+            timelineComponent.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
@@ -362,7 +366,7 @@ export function PromptsIndex() {
 
         return (
             <>
-                <TimelineHeader topOfTl={topOfTl} filters={filters} setFilters={setFilters}/>
+                <TimelineHeader topOfTl={topOfTl} setFilters={setFilters}/>
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
 
                     <GridItem colSpan={9}>
