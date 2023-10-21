@@ -23,7 +23,7 @@ export function Navbar() {
     }
 
     return (
-        <Box bg={bgValue} p={4}>
+        <Box bg={bgValue} p={4} maxH={'10vh'}>
             <Flex direction={'row'} justifyContent={'space-between'} alignItems={'center'}>
                 <Flex alignItems={'center'} gap={2}>
                     <ChakraLink

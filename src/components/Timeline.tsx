@@ -1,60 +1,16 @@
 import { IPrompt } from "../shared-types";
+import { Stack, StackProps } from "@chakra-ui/react";
+import { forwardRef, ForwardedRef, } from "react";
+import { PromptCard } from ".";
 
-import { Text, Card, CardHeader, CardBody, CardFooter, HStack, Button, Box, VStack, Stack, SimpleGrid, IconButton } from "@chakra-ui/react";
-
-import { AddIcon, StarIcon } from '@chakra-ui/icons'
-import { useState } from "react";
-
-interface TimeLineProps {
+interface TimeLineProps extends StackProps {
     prompts: IPrompt[] | null;
-}
-
-interface PromptCardProps {
-    prompt: IPrompt;
-}
-
-function PromptCard({ prompt }: PromptCardProps) {
-    const { id, content, user, stars, replies, } = prompt
-    const [lineValue, setLineValue ] = useState(6)
-
-    function handleExpand(){
-        if (lineValue === 6){
-            setLineValue(100)
-            return
-        }
-        setLineValue(6)
-    }
-
-
-    return (
-        <Card variant={"main"} mx={4}>
-            <CardHeader>#{id} from @{user.displayName}</CardHeader>
-            <CardBody>
-                <Text onClick={handleExpand} noOfLines={lineValue}>{content}</Text>
-            </CardBody>
-            <CardFooter>
-                <HStack spacing={12}>
-                    <HStack>
-                        <Text>{replies?.length}</Text>
-                        <AddIcon/>
-                    </HStack>
-
-                    <HStack>
-                        <Text>{stars?.length}</Text>
-                        <StarIcon
-                        
-                        fill={"red"}/>
-                    </HStack>
-                </HStack>
-            </CardFooter>
-        </Card>
-
-    )
+    
 }
 
 
-
-export function Timeline({ prompts }: TimeLineProps) {
+export const Timeline = forwardRef((props: TimeLineProps, ref: ForwardedRef<HTMLDivElement>) => {
+    const { prompts } = props;
 
     const cards = prompts?.map(prompt => {
         return (
@@ -63,9 +19,18 @@ export function Timeline({ prompts }: TimeLineProps) {
     })
 
     return (
-        <Stack p={{sm: 4, md: 12}} spacing={4} >
+        <Stack ref={ref} p={4} paddingBottom={24} spacing={4} overflow={'scroll'} maxH={'80vh'}>
             {cards}
 
         </Stack>
     )
-}
+
+})
+
+
+
+
+// export function Timeline({ prompts, ref }: TimeLineProps) {
+
+    
+// }
