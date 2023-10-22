@@ -1,8 +1,9 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IProfile } from "../shared-types";
 import { createProfile } from "../utilities/auth-services";
-import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, Input, } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, Input, useColorModeValue, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
+
 
 interface Props {
     email: string;
@@ -23,6 +24,7 @@ export function SignUpForm({ email }: Props) {
     const [profileForm, setProfileForm] = useState<IProfile>(defaultForm)
 
     const navigate = useNavigate()
+    const borderValue = useColorModeValue('background.300', 'background.700')
 
     async function handleSubmit(evt: FormEvent) {
 
@@ -62,9 +64,9 @@ export function SignUpForm({ email }: Props) {
     }
 
     return (
-        <Box p={12}>
+        <Box m={4} p={12} display={'flex'} flexDirection={'column'}>
             <form onSubmit={handleSubmit}>
-                <FormControl>
+                <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Display Name</FormLabel>
                     <Input name="displayName" value={profileForm.displayName} onChange={handleChange}></Input>
                     <FormHelperText>
@@ -75,9 +77,10 @@ export function SignUpForm({ email }: Props) {
                 </FormControl>
 
 
-                <FormControl>
+                <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Are you...?</FormLabel>
-                    <CheckboxGroup defaultValue={profileForm.roles} onChange={handleRoleChange}>
+                    <CheckboxGroup colorScheme={'accent'} variant={'brand'} defaultValue={profileForm.roles} onChange={handleRoleChange}>
+                        <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-evenly'} gap={2}>
                         <Checkbox value='novelist'>A novelist</Checkbox>
                         <Checkbox value='video-game-dev'>A game developer</Checkbox>
                         <Checkbox value='screenwriter'>A screenwriter</Checkbox>
@@ -87,12 +90,15 @@ export function SignUpForm({ email }: Props) {
                         <Checkbox value='character-designer'>A character designer</Checkbox>
                         <Checkbox value='comic-book-writer'>A comic book writer</Checkbox>
 
+                        </Box>
+                        
+
                     </CheckboxGroup>
                     <FormHelperText>What do you do? Help us help you.</FormHelperText>
 
                 </FormControl>
 
-                <FormControl>
+                <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Bio</FormLabel>
                     <Textarea name="bio" value={profileForm.bio} onChange={handleChange}></Textarea>
                     <FormHelperText>
@@ -102,10 +108,10 @@ export function SignUpForm({ email }: Props) {
 
                 </FormControl>
 
-                <FormControl>
+                <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Genres</FormLabel>
-                    <CheckboxGroup defaultValue={profileForm.genres} onChange={handleGenreChange}>
-                        <Stack spacing={[1, 5]} direction={['column', 'row']}>
+                    <CheckboxGroup colorScheme={'accent'} variant={'brand'} defaultValue={profileForm.genres} onChange={handleGenreChange}>
+                    <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-evenly'} gap={2}>
                             <Checkbox value='science-fiction'>Science Fiction</Checkbox>
                             <Checkbox value='high-fantasy'>High Fantasy</Checkbox>
                             <Checkbox value='urban-fantasy'>Urban Fantasy</Checkbox>
@@ -119,13 +125,13 @@ export function SignUpForm({ email }: Props) {
                             <Checkbox value='horror'>Horror</Checkbox>
                             <Checkbox value='adventure'>Adventure</Checkbox>
 
-                        </Stack>
+                        </Box>
                     </CheckboxGroup>
                     <FormHelperText>What are you interested in?</FormHelperText>
 
                 </FormControl>
 
-                <FormControl>
+                <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Other details</FormLabel>
                     <Textarea name="details" value={profileForm.details} onChange={handleChange}></Textarea>
                     <FormHelperText>
