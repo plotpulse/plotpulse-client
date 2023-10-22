@@ -372,7 +372,7 @@ export function PromptsIndex() {
 
                 <GridItem colSpan={2} w={'100%'} >
                         <Box mx={2} borderRightWidth={3} borderColor={borderValue}  h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
-                            
+                            User specific info will go here
 
                         </Box>
 
