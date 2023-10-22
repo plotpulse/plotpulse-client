@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, Ref } from "react";
 import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
-import { Box, Grid, GridItem,  } from "@chakra-ui/react";
+import { Box, Grid, GridItem, useColorModeValue,  } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 
 function getRandomid() {
@@ -363,19 +363,28 @@ export function PromptsIndex() {
     useEffect(() => { filterPrompts() }, [filters, prompts])
 
     function loaded() {
+        const borderValue = useColorModeValue('background.100','background.800')
 
         return (
             <>
                 <TimelineHeader topOfTl={topOfTl} setFilters={setFilters}/>
-                <Grid templateColumns={'repeat(12, 1fr)'} gap={4}>
+                <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
 
-                    <GridItem colSpan={9}>
+                <GridItem colSpan={2} w={'100%'} >
+                        <Box mx={2} borderRightWidth={3} borderColor={borderValue}  h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
+                            User specific info will go here
+
+                        </Box>
+
+                    </GridItem>
+
+                    <GridItem colSpan={7}>
                         <Timeline prompts={filteredPrompts} ref={tlRef as Ref<HTMLDivElement>} />
 
                     </GridItem>
 
                     <GridItem colSpan={3} w={'100%'} >
-                        <Box border={'1px'} borderColor={'red'} h={'80vh'}>
+                        <Box mx={2} borderLeftWidth={3} borderColor={borderValue}  h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
                             {ALL_GENRES.map((genre, idx) => {
 
                                 return (

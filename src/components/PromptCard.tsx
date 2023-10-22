@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge, useColorModeValue } from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
 import { AddIcon, StarIcon } from '@chakra-ui/icons'
 
@@ -8,6 +8,7 @@ interface PromptCardProps {
 
 export function PromptCard({ prompt }: PromptCardProps) {
     const { content, user, stars, replies, genres } = prompt
+    const badgeBGValue = useColorModeValue('accent.100', 'accent.700')
 
     return (
         <Card variant={"main"} mx={4}>
@@ -15,7 +16,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                 @{user.displayName}
                 {genres.map((genre, idx) => {
                     return (
-                        <Badge key={idx} mx={2}>{genre}</Badge>
+                        <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} mx={2} p={1}>{genre}</Badge>
 
                     )
                 })}

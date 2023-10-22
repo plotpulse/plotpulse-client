@@ -1,5 +1,5 @@
 import { IPrompt } from "../shared-types";
-import { Stack, StackProps } from "@chakra-ui/react";
+import { Stack, StackProps, useColorModeValue } from "@chakra-ui/react";
 import { forwardRef, ForwardedRef, } from "react";
 import { PromptCard } from ".";
 
@@ -10,6 +10,7 @@ interface TimeLineProps extends StackProps {
 
 
 export const Timeline = forwardRef((props: TimeLineProps, ref: ForwardedRef<HTMLDivElement>) => {
+    const borderValue = useColorModeValue('background.100','background.800')
     const { prompts } = props;
 
     const cards = prompts?.map(prompt => {
@@ -19,7 +20,7 @@ export const Timeline = forwardRef((props: TimeLineProps, ref: ForwardedRef<HTML
     })
 
     return (
-        <Stack ref={ref} p={4} paddingBottom={24} spacing={4} overflow={'scroll'} maxH={'80vh'}>
+        <Stack ref={ref} p={2} borderLeftWidth={3} borderRightWidth={3} borderColor={borderValue} paddingBottom={24} spacing={4} overflow={'scroll'} maxH={'80vh'} boxShadow={"lg"}>
             {cards}
 
         </Stack>
