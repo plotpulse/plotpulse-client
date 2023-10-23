@@ -3,6 +3,7 @@ import { IProfile } from "../shared-types";
 import { createProfile } from "../utilities/auth-services";
 import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, Input, useColorModeValue, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
+import { ALL_GENRES } from "../constants";
 
 
 interface Props {
@@ -25,6 +26,7 @@ export function SignUpForm({ email }: Props) {
 
     const navigate = useNavigate()
     const borderValue = useColorModeValue('background.300', 'background.700')
+    const focusBorderValue = useColorModeValue('accent.300', 'accent.600')
 
     async function handleSubmit(evt: FormEvent) {
 
@@ -68,7 +70,7 @@ export function SignUpForm({ email }: Props) {
             <form onSubmit={handleSubmit}>
                 <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Display Name</FormLabel>
-                    <Input name="displayName" value={profileForm.displayName} onChange={handleChange}></Input>
+                    <Input focusBorderColor={focusBorderValue} name="displayName" value={profileForm.displayName} onChange={handleChange}></Input>
                     <FormHelperText>
                         How you'll be publicly identified - choose wisely, you can't change this.
 
@@ -81,7 +83,7 @@ export function SignUpForm({ email }: Props) {
                     <FormLabel>Are you...?</FormLabel>
                     <CheckboxGroup colorScheme={'accent'} variant={'brand'} defaultValue={profileForm.roles} onChange={handleRoleChange}>
                         <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-evenly'} gap={2}>
-                        <Checkbox value='novelist'>A novelist</Checkbox>
+                        <Checkbox value='author'>An author</Checkbox>
                         <Checkbox value='video-game-dev'>A game developer</Checkbox>
                         <Checkbox value='screenwriter'>A screenwriter</Checkbox>
                         <Checkbox value='TTRPG-player'>A TTRPG Player</Checkbox>
@@ -89,7 +91,7 @@ export function SignUpForm({ email }: Props) {
                         <Checkbox value='fan-fiction'>A fan-fiction writer</Checkbox>
                         <Checkbox value='character-designer'>A character designer</Checkbox>
                         <Checkbox value='comic-book-writer'>A comic book writer</Checkbox>
-
+                        <Checkbox value='something-else'>Something else</Checkbox>
                         </Box>
                         
 
@@ -100,7 +102,7 @@ export function SignUpForm({ email }: Props) {
 
                 <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Bio</FormLabel>
-                    <Textarea name="bio" value={profileForm.bio} onChange={handleChange}></Textarea>
+                    <Textarea focusBorderColor={focusBorderValue} name="bio" value={profileForm.bio} onChange={handleChange}></Textarea>
                     <FormHelperText>
                         'Slayer of 10,000 beasts' or 'Likes matcha' - whatever.
 
@@ -112,18 +114,12 @@ export function SignUpForm({ email }: Props) {
                     <FormLabel>Genres</FormLabel>
                     <CheckboxGroup colorScheme={'accent'} variant={'brand'} defaultValue={profileForm.genres} onChange={handleGenreChange}>
                     <Box display={'flex'} flexDirection={'row'} flexWrap={'wrap'} justifyContent={'space-evenly'} gap={2}>
-                            <Checkbox value='science-fiction'>Science Fiction</Checkbox>
-                            <Checkbox value='high-fantasy'>High Fantasy</Checkbox>
-                            <Checkbox value='urban-fantasy'>Urban Fantasy</Checkbox>
-                            <Checkbox value='supernatural'>Supernatural</Checkbox>
-                            <Checkbox value='superhero'>Superhero</Checkbox>
-                            <Checkbox value='dystopian'>Dystopian</Checkbox>
-                            <Checkbox value='steampunk'>Steampunk</Checkbox>
-                            <Checkbox value='cyberpunk'>Cyberpunk</Checkbox>
-                            <Checkbox value='paranormal-romance'>Paranormal Romance</Checkbox>
-                            <Checkbox value='mystery'>Mystery</Checkbox>
-                            <Checkbox value='horror'>Horror</Checkbox>
-                            <Checkbox value='adventure'>Adventure</Checkbox>
+                           {ALL_GENRES.map(genre => {
+                            return (
+                                <Checkbox key={genre} value={genre}>{genre.toUpperCase()}</Checkbox>
+
+                            )
+                           })}
 
                         </Box>
                     </CheckboxGroup>
@@ -133,7 +129,7 @@ export function SignUpForm({ email }: Props) {
 
                 <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Other details</FormLabel>
-                    <Textarea name="details" value={profileForm.details} onChange={handleChange}></Textarea>
+                    <Textarea focusBorderColor={focusBorderValue} name="details" value={profileForm.details} onChange={handleChange}></Textarea>
                     <FormHelperText>
                         Go ahead. We're listening.
 

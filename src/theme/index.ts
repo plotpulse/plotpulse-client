@@ -26,7 +26,7 @@ const overrides: Record<string, any> = {
     components: {
       Button: buttonTheme,
       Card: cardTheme,
-      Checkbox: checkboxTheme
+      Checkbox: checkboxTheme,
       // Other components go here
     },
 }
