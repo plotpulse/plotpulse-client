@@ -1,7 +1,7 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { IProfile } from "../shared-types";
 import { createProfile } from "../utilities/auth-services";
-import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, Input, useColorModeValue, } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Stack, Checkbox, Textarea, Input, useColorModeValue, Heading, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import { ALL_GENRES } from "../constants";
 
@@ -67,6 +67,7 @@ export function SignUpForm({ email }: Props) {
 
     return (
         <Box m={4} p={12} display={'flex'} flexDirection={'column'}>
+            <Heading m={4}>Complete your account creation</Heading>
             <form onSubmit={handleSubmit}>
                 <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
                     <FormLabel>Display Name</FormLabel>
