@@ -65,6 +65,7 @@ export function SignUpForm({ email }: Props) {
 
 
     }
+    console.log("default form", defaultForm)
 
     return (
         <Box m={4} p={12} display={'flex'} flexDirection={'column'}>
