@@ -34,6 +34,7 @@ export function SignUpForm({ email }: Props) {
 
         try {
             const profileResponse = await createProfile(profileForm)
+            console.log('in signupform', profileResponse)
 
             if (profileResponse.id === email) {
                 setProfileForm(defaultForm)
