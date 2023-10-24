@@ -1,4 +1,4 @@
-import { Box, BoxProps, useColorModeValue } from "@chakra-ui/react";
+import { Box, BoxProps, Button, Card, CardHeader, CardBody, CardFooter, Divider, Link, useColorModeValue, Heading } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IProfile, IPrompt } from "../shared-types";
@@ -42,27 +42,31 @@ export function Suggestions({prompts}: SuggestionsProps) {
     }
 
     function loaded() {
-        console.log(prompts)
         const suggestions = profile?.genres.map(genre => {
             const filtered = prompts?.filter(prompt => {
                 
                 return prompt.genres.includes(genre)
             })
-            console.log(filtered)
+
+            if (!filtered[0]) return
         
             const suggested = filtered[Math.floor(Math.random() * filtered.length)]
             
             
             return (
-                <p key={suggested?.id}>{suggested?.id}</p>
+                
+                    <Button variant={'outline'} colorScheme="accent">#{suggested?.id} - {genre.toUpperCase()}</Button>
+
+                    
             )
         })
 
-        console.log(suggestions)
 
         return (
             <>
                 <Box mx={2} borderRightWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
+                   <Heading size={['xs', null, 'sm']}>Suggstions for you:</Heading>
+                   <Divider></Divider>
                     {suggestions}
 
                 </Box>
