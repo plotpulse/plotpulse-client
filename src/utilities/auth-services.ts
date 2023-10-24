@@ -49,6 +49,7 @@ export async function createProfile(data: IProfile){
         }
 
         const response = await fetch(PROFILE_URL, options)
+        console.log('in services', response)
         
 
         if (response.ok) {
