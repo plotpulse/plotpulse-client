@@ -7,6 +7,7 @@ interface TimelineHeaderProps extends BoxProps {
     setFilters: Dispatch<SetStateAction<string[]>>;
 }
 
+
 export function TimelineHeader({topOfTl, setFilters}: TimelineHeaderProps) {
 
     return (

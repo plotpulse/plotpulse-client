@@ -9,6 +9,7 @@ interface TimeLineProps extends StackProps {
 }
 
 
+
 export const Timeline = forwardRef((props: TimeLineProps, ref: ForwardedRef<HTMLDivElement>) => {
     const borderValue = useColorModeValue('background.100','background.800')
     const { prompts } = props;

@@ -368,6 +368,7 @@ export function PromptsIndex() {
         return (
             <>
                 <TimelineHeader topOfTl={topOfTl} setFilters={setFilters}/>
+                
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
 
                 <GridItem colSpan={2} w={'100%'} >
