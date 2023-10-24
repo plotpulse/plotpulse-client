@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, Ref } from "react";
-import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
+import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
 import { Box, Grid, GridItem, useColorModeValue, } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
@@ -371,10 +371,8 @@ export function PromptsIndex() {
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
 
                     <GridItem colSpan={2} w={'100%'} >
-                        <Box mx={2} borderRightWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
-                            User specific info will go here
-
-                        </Box>
+                        <Suggestions prompts={prompts}/>
+                        
 
                     </GridItem>
 
