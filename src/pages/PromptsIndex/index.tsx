@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef, Ref } from "react";
-import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
+import { useState, useEffect } from "react";
+import { PageWrapper, TimelineHeader, Timeline } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
 import { Box, Grid, GridItem, useColorModeValue,  } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
+
 
 function getRandomid() {
     return Math.floor(Math.random() * 500 + Math.random() * 500 + Math.random() * 500)
@@ -20,8 +21,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -29,8 +30,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -38,8 +39,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -47,8 +48,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -56,16 +57,16 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(), content: "In a modern city where the line between human and supernatural blurs, I investigate bizarre crimes that put me face to face with the unknown.",
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -73,8 +74,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -82,8 +83,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -91,8 +92,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -100,8 +101,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -109,8 +110,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'supernatural'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -118,8 +119,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'supernatural'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -127,8 +128,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['mystery', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -136,8 +137,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['mystery', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -145,8 +146,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -154,8 +155,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -163,8 +164,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -172,8 +173,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -181,8 +182,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -190,8 +191,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -199,8 +200,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -208,8 +209,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['mystery', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -217,8 +218,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -226,8 +227,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['mystery', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -235,8 +236,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -244,8 +245,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -253,8 +254,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -262,8 +263,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -271,8 +272,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['fantasy', 'romance'],
-
+        genres: [],
+        
     },
     {
         id: getRandomid(),
@@ -280,12 +281,11 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: ['dystopian', 'science fiction'],
-
+        genres: [],
+        
     },
 
 ];
-
 
 export function PromptsIndex() {
 
