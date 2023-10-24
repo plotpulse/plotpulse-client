@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import { PageWrapper, TimelineHeader, Timeline } from "../../components"
+import { useState, useEffect, useRef, Ref } from "react";
+import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
-import { Box, Grid, GridItem, useColorModeValue,  } from "@chakra-ui/react";
+import { Box, Grid, GridItem, useColorModeValue, } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 
 
@@ -21,8 +21,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -30,8 +30,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -39,8 +39,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -48,8 +48,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -57,16 +57,16 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(), content: "In a modern city where the line between human and supernatural blurs, I investigate bizarre crimes that put me face to face with the unknown.",
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -74,8 +74,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -83,8 +83,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -92,8 +92,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -101,8 +101,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -110,8 +110,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'supernatural'],
+
     },
     {
         id: getRandomid(),
@@ -119,8 +119,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'supernatural'],
+
     },
     {
         id: getRandomid(),
@@ -128,8 +128,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -137,8 +137,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -146,8 +146,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -155,8 +155,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -164,8 +164,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -173,8 +173,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -182,8 +182,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -191,8 +191,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -200,8 +200,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -209,8 +209,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -218,8 +218,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -227,8 +227,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['mystery', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -236,8 +236,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -245,8 +245,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -254,8 +254,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
     {
         id: getRandomid(),
@@ -263,8 +263,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -272,8 +272,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['fantasy', 'romance'],
+
     },
     {
         id: getRandomid(),
@@ -281,8 +281,8 @@ const mockPrompts: IPrompt[] = [
         user: user,
         stars: [],
         replies: [],
-        genres: [],
-        
+        genres: ['dystopian', 'science fiction'],
+
     },
 
 ];
@@ -293,37 +293,36 @@ export function PromptsIndex() {
     const [filters, setFilters] = useState<string[]>(ALL_GENRES)
     const [filteredPrompts, setFilteredPrompts] = useState<IPrompt[] | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const borderValue = useColorModeValue('background.100', 'background.800')
     const tlRef: Ref<HTMLDivElement | undefined> = useRef();
 
     function containsAny(sourceGenres: string[], targetGenres: string[]): boolean {
+    
         for (const item of targetGenres) {
-            console.log('contains any', item)
             if (sourceGenres.includes(item)) {
                 return true
             }
-
         }
         return false
     }
 
     function filterPrompts() {
-        
-        setFilteredPrompts(prompts?.filter(prompt =>
+       
+        if (!prompts) return
+
+        setFilteredPrompts(prompts.filter(prompt =>
             containsAny(prompt.genres, filters)
-        ) ?? null )
+        ) ?? null)
 
     }
 
     function handleFilter(newFilter: string) {
-        console.log('handleFilter func')
 
         if (filters.includes(newFilter)) {
             const newFilters = filters.filter(item => item !== newFilter)
-            console.log('new filters true', newFilters)
             setFilters(newFilters)
         } else {
             const newFilters = [...filters, newFilter]
-            console.log('new filters false', newFilters)
             setFilters(newFilters)
         }
 
@@ -337,19 +336,21 @@ export function PromptsIndex() {
             //prompts should be in a different order each page reload
             setPrompts(response)
             setIsLoading(false)
+            // currently relying on useEffect and the filter prompts function to trigger loading state
 
         } catch (error) {
+            // do something if this doesnt work
 
         }
     }
 
     function topOfTl() {
         // there is a typescript warning but it doesn't stop the functionality
-        
-        
+
+
         if (tlRef) {
             // i can't figure out this type error but tt is non-blocking
-            const timelineComponent: HTMLDivElement = tlRef?.current 
+            const timelineComponent: HTMLDivElement = tlRef?.current
             timelineComponent.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -363,16 +364,14 @@ export function PromptsIndex() {
     useEffect(() => { filterPrompts() }, [filters, prompts])
 
     function loaded() {
-        const borderValue = useColorModeValue('background.100','background.800')
-
         return (
             <>
-                <TimelineHeader topOfTl={topOfTl} setFilters={setFilters}/>
-                
+                <TimelineHeader topOfTl={topOfTl} setFilters={setFilters} />
+
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
 
-                <GridItem colSpan={2} w={'100%'} >
-                        <Box mx={2} borderRightWidth={3} borderColor={borderValue}  h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
+                    <GridItem colSpan={2} w={'100%'} >
+                        <Box mx={2} borderRightWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
                             User specific info will go here
 
                         </Box>
@@ -385,21 +384,18 @@ export function PromptsIndex() {
                     </GridItem>
 
                     <GridItem colSpan={3} w={'100%'} >
-                        <Box mx={2} borderLeftWidth={3} borderColor={borderValue}  h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
+                        <Box mx={2} borderLeftWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
                             {ALL_GENRES.map((genre, idx) => {
 
                                 return (
-                                    <GenreFilterButton key={idx} genre={genre} handleFilter={handleFilter} filters={filters}/>
+                                    <GenreFilterButton key={idx} genre={genre} handleFilter={handleFilter} filters={filters} />
                                 )
                             })}
 
                         </Box>
-
                     </GridItem>
                 </Grid>
-
             </>
-
         )
 
     }
@@ -408,12 +404,7 @@ export function PromptsIndex() {
     return (
         <PageWrapper overflow={'hidden'} maxH={'90vh'}>
 
-
             {isLoading ? <p>Loading...</p> : loaded()}
-
-
-
-
 
         </PageWrapper>
     )
