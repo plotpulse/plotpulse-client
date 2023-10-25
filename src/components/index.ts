@@ -33,7 +33,7 @@ export { Timeline } from './Timeline'
 export { PromptCard } from './PromptCard'
 export { GenreFilterButton} from './GenreFilterButton'
 export { Suggestions } from './Suggestions'
-export { ActivePromptDrawer } from './ActivePromptDrawer'
+export { ActivePromptModal } from './ActivePromptModal'
 
 
 

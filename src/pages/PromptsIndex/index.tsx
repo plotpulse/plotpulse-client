@@ -1,13 +1,7 @@
 import { useState, useEffect, useRef, Ref } from "react";
-import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptDrawer } from "../../components"
+import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptModal} from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
-import { Box, Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton, Grid, GridItem, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
+import { Box, Grid, GridItem, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 
 
@@ -296,7 +290,7 @@ const mockPrompts: IPrompt[] = [
 export function PromptsIndex() {
 
     const [prompts, setPrompts] = useState<IPrompt[] | null>(null)
-    const [ activePrompt, setActivePrompt ] = useState<number | null>(null)
+    const [ activePromptId, setActivePromptId ] = useState<number | null>(null)
     const [filters, setFilters] = useState<string[]>(ALL_GENRES)
     const [filteredPrompts, setFilteredPrompts] = useState<IPrompt[] | null>(null)
     const [isLoading, setIsLoading] = useState(true)
@@ -370,16 +364,16 @@ export function PromptsIndex() {
     }
 
     function updateActive(id: number){
-        setActivePrompt(id)
+        setActivePromptId(id)
         onOpen()
 
     }
 
 
 
-
     useEffect(() => { handleFetchPrompts() }, [isLoading])
     useEffect(() => { filterPrompts() }, [filters, prompts])
+
 
     function loaded() {
         return (
@@ -407,7 +401,7 @@ export function PromptsIndex() {
                         </Box>
                     </GridItem>
                 </Grid>
-                <ActivePromptDrawer activePrompt={activePrompt} isOpen={isOpen} onClose={onClose} children></ActivePromptDrawer>
+                <ActivePromptModal activePromptId={activePromptId} isOpen={isOpen} onClose={onClose} children></ActivePromptModal>
             </>
         )
 
@@ -417,9 +411,7 @@ export function PromptsIndex() {
     return (
         <PageWrapper overflow={'hidden'} maxH={'90vh'}>
 
-            {isLoading ? <p>Loading...</p> : loaded()}
-
-            
+            {isLoading ? <p>Loading...</p> : loaded()} 
 
         </PageWrapper>
     )
