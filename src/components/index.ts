@@ -32,6 +32,8 @@ export { TimelineHeader } from './TimelineHeader'
 export { Timeline } from './Timeline'
 export { PromptCard } from './PromptCard'
 export { GenreFilterButton} from './GenreFilterButton'
+export { Suggestions } from './Suggestions'
+export { ActivePromptModal } from './ActivePromptModal'
 
 
 

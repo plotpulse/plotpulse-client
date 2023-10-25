@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, Ref } from "react";
-import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton } from "../../components"
+import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptModal} from "../../components"
 import { IPrompt, IProfile } from "../../shared-types"
-import { Box, Grid, GridItem, useColorModeValue, } from "@chakra-ui/react";
+import { Box, Grid, GridItem, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 
 
@@ -290,11 +290,14 @@ const mockPrompts: IPrompt[] = [
 export function PromptsIndex() {
 
     const [prompts, setPrompts] = useState<IPrompt[] | null>(null)
+    const [ activePromptId, setActivePromptId ] = useState<number | null>(null)
     const [filters, setFilters] = useState<string[]>(ALL_GENRES)
     const [filteredPrompts, setFilteredPrompts] = useState<IPrompt[] | null>(null)
     const [isLoading, setIsLoading] = useState(true)
-    const borderValue = useColorModeValue('background.100', 'background.800')
     const tlRef: Ref<HTMLDivElement | undefined> = useRef();
+
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    const borderValue = useColorModeValue('background.100', 'background.800')
 
     function containsAny(sourceGenres: string[], targetGenres: string[]): boolean {
     
@@ -350,6 +353,7 @@ export function PromptsIndex() {
 
         if (tlRef) {
             // i can't figure out this type error but tt is non-blocking
+            
             const timelineComponent: HTMLDivElement = tlRef?.current
             timelineComponent.scrollTo({
                 top: 0,
@@ -359,9 +363,17 @@ export function PromptsIndex() {
         }
     }
 
+    function updateActive(id: number){
+        setActivePromptId(id)
+        onOpen()
+
+    }
+
+
 
     useEffect(() => { handleFetchPrompts() }, [isLoading])
     useEffect(() => { filterPrompts() }, [filters, prompts])
+
 
     function loaded() {
         return (
@@ -370,20 +382,15 @@ export function PromptsIndex() {
 
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
 
-                    <GridItem colSpan={2} w={'100%'} >
-                        <Box mx={2} borderRightWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
-                            User specific info will go here
-
-                        </Box>
-
-                    </GridItem>
-
-                    <GridItem colSpan={7}>
-                        <Timeline prompts={filteredPrompts} ref={tlRef as Ref<HTMLDivElement>} />
-
-                    </GridItem>
-
                     <GridItem colSpan={3} w={'100%'} >
+                        <Suggestions prompts={prompts} updateActive={updateActive}/>
+                    </GridItem>
+
+                    <GridItem colSpan={6}>
+                        <Timeline prompts={filteredPrompts} ref={tlRef as Ref<HTMLDivElement>} />
+                    </GridItem>
+
+                    <GridItem colSpan={3} >
                         <Box mx={2} borderLeftWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
                             {ALL_GENRES.map((genre, idx) => {
 
@@ -391,10 +398,10 @@ export function PromptsIndex() {
                                     <GenreFilterButton key={idx} genre={genre} handleFilter={handleFilter} filters={filters} />
                                 )
                             })}
-
                         </Box>
                     </GridItem>
                 </Grid>
+                <ActivePromptModal activePromptId={activePromptId} isOpen={isOpen} onClose={onClose} children></ActivePromptModal>
             </>
         )
 
@@ -404,7 +411,7 @@ export function PromptsIndex() {
     return (
         <PageWrapper overflow={'hidden'} maxH={'90vh'}>
 
-            {isLoading ? <p>Loading...</p> : loaded()}
+            {isLoading ? <p>Loading...</p> : loaded()} 
 
         </PageWrapper>
     )
