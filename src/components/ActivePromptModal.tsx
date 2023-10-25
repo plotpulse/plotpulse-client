@@ -90,9 +90,7 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
                 
                 </ModalBody>
 
-                <ModalFooter>
-                    ????
-                </ModalFooter>
+                
 
             </ModalContent>
 
