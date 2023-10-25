@@ -1,17 +1,17 @@
-import { Box, BoxProps, Button, Card, CardHeader, CardBody, CardFooter, Divider, Link, useColorModeValue, Heading } from "@chakra-ui/react";
+import { Box, BoxProps, Button, Divider, useColorModeValue, Heading } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { IProfile, IPrompt } from "../shared-types";
 import { getProfile, } from "../utilities/auth-services";
-import { Text } from "@chakra-ui/react";
 
 interface SuggestionsProps extends BoxProps {
-    prompts: IPrompt[] | null
+    prompts: IPrompt[] | null;
+    updateActive: (id: number) => void;
 }
 
 
 
-export function Suggestions({prompts}: SuggestionsProps) {
+export function Suggestions({prompts, updateActive}: SuggestionsProps) {
 
     // REFACTOR to state management
     const { user, getAccessTokenSilently } = useAuth0()
@@ -42,20 +42,20 @@ export function Suggestions({prompts}: SuggestionsProps) {
     }
 
     function loaded() {
-        const suggestions = profile?.genres.map(genre => {
+        const suggestions = profile?.genres?.map(genre => {
             const filtered = prompts?.filter(prompt => {
                 
                 return prompt.genres.includes(genre)
             })
 
-            if (!filtered[0]) return
+            if (!filtered || !filtered[0]) return
         
             const suggested = filtered[Math.floor(Math.random() * filtered.length)]
             
             
             return (
                 
-                    <Button variant={'outline'} colorScheme="accent">#{suggested?.id} - {genre.toUpperCase()}</Button>
+                    <Button key={suggested?.id} variant={'outline'} colorScheme="accent" size={['xs', null, 'sm']} onClick={() => updateActive(suggested?.id)}>#{suggested?.id} - {genre.toUpperCase()}</Button>
 
                     
             )
