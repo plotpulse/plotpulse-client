@@ -35,6 +35,32 @@ export async function create(){
 
 }
 
-export async function getOne(){
+export async function getOne(id: number){
+
+    try {
+
+        const options = {
+            method: 'GET',
+            headers: {
+
+                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+
+            }
+        }
+        
+        const url = `${PROMPT_URL}/${id}`
+
+        const response = await fetch(url, options)
+        
+        if (response.ok){
+            return response.json()
+        } else {
+            throw new Error('Invalid Request')
+        }
+        
+    } catch (error) {
+        return error
+        
+    }
 
 }
