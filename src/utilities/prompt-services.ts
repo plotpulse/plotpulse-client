@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import * as promptAPI from './prompt-api'
-import { IProfile } from '../shared-types'
+import { IProfile, IPrompt } from '../shared-types'
 
 
 
@@ -30,6 +30,18 @@ export async function getPrompt(id: number){
     } catch (error) {
         console.log(error)
         throw new Error('Could not fetch prompt')
+        
+    }
+}
+
+export async function createPrompt(newPrompt: IPrompt){
+    try {
+        const promptResponse = await promptAPI.create(newPrompt)
+        return promptResponse
+        
+    } catch (error) {
+        console.log(error)
+        throw new Error('Could not create prompt')
         
     }
 }

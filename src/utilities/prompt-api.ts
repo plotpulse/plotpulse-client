@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import { IPrompt } from '../shared-types'
 const { getAccessTokenSilently } = useAuth0()
 
 const PROMPT_URL = import.meta.env.VITE_PROMPT_URL
@@ -31,7 +32,32 @@ export async function getAll(){
 
 }
 
-export async function create(){
+export async function create(newPrompt: IPrompt){
+
+    try {
+
+        const options = {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+            },
+            body: JSON.stringify(newPrompt)
+        }
+
+        const response = await fetch(PROMPT_URL, options)
+
+        if (response.ok){
+            return response.json()
+        } else {
+            throw new Error('Invalid request')
+        }
+        
+    } catch (error) {
+        console.log(error)
+        return error
+        
+    }
 
 }
 
