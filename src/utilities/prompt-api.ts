@@ -32,7 +32,7 @@ export async function getAll(){
 
 }
 
-export async function create(newPrompt: IPrompt){
+export async function create(newPrompt: {}){
 
     try {
 

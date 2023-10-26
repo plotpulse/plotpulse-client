@@ -33,7 +33,7 @@ export async function getPrompt(id: number){
     }
 }
 
-export async function createPrompt(newPrompt: IPrompt){
+export async function createPrompt(newPrompt: {}){
     try {
         const promptResponse = await promptAPI.create(newPrompt)
         return promptResponse

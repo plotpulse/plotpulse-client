@@ -14,7 +14,7 @@ export async function getReplies(promptId: number) {
     }
 }
 
-export async function createReply(promptId: number, newReply: IReply) {
+export async function createReply(promptId: number, newReply: {}) {
 
     try {
         const replyResponse = await replyAPI.create(promptId, newReply)

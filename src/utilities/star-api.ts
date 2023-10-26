@@ -1,9 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { IReply } from '../shared-types'
+import { IStar} from '../shared-types'
 const { getAccessTokenSilently } = useAuth0()
-const PROMPT_URL = import.meta.env.VITE_PROMPT_URL
 
-export async function getAll(promptId: number){
+const STAR_URL = import.meta.env.VITE_STAR_URL
+
+export async function getOne(id: number){
+
     try {
 
         const options = {
@@ -14,10 +16,10 @@ export async function getAll(promptId: number){
 
             }
         }
+        
+        const url = `${STAR_URL}/${id}`
 
-        const replyURL = `${PROMPT_URL}/${promptId}/replies/`
-
-        const response = await fetch(replyURL, options)
+        const response = await fetch(url, options)
         
         if (response.ok){
             return response.json()
@@ -29,10 +31,10 @@ export async function getAll(promptId: number){
         return error
         
     }
-
+   
 }
 
-export async function create(promptId:number, newReply: {}){
+export async function create(newStar: {}){
 
     try {
 
@@ -42,12 +44,10 @@ export async function create(promptId:number, newReply: {}){
                 "Content-Type": "application/json",
                 "Authorization": `bearer ${ await getAccessTokenSilently()}`
             },
-            body: JSON.stringify(newReply)
+            body: JSON.stringify(newStar)
         }
 
-        const replyURL = `${PROMPT_URL}/${promptId}/replies/`
-
-        const response = await fetch(replyURL, options)
+        const response = await fetch(STAR_URL, options)
 
         if (response.ok){
             return response.json()
@@ -61,4 +61,29 @@ export async function create(promptId:number, newReply: {}){
         
     }
 
+}
+
+
+export async function destroy(id: number){
+
+    try {
+        const options = {
+            method: 'DELETE',
+            headers: {
+                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+            },
+        }
+        const url = `${STAR_URL}/${id}`
+        const response = await fetch(url, options)
+
+
+        if (response.ok) {
+            return response.json()
+        } else {
+            throw new Error("Invalid Request")
+        }
+    } catch (error) {
+        console.log(error)
+        return error
+    }
 }
