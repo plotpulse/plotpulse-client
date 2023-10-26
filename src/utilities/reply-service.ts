@@ -1,4 +1,4 @@
-import { IReply } from '../shared-types'
+
 import * as replyAPI from './reply-api'
 
 export async function getReplies(promptId: number) {

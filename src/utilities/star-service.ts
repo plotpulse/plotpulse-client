@@ -1,4 +1,4 @@
-import { IStar } from '../shared-types'
+
 import * as starAPI from './star-api'
 
 

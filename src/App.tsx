@@ -2,7 +2,7 @@ import * as React from "react"
 import { useLocation, useRoutes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
-import { Home, PromptShow, PromptsIndex, Profile, SignUp } from "./pages"
+import { Home, PromptsIndex, Profile, SignUp } from "./pages"
 
 import { Navbar } from "./components";
 
@@ -20,10 +20,6 @@ function App() {
       element: <PromptsIndex />
     },
     {
-      path: "/prompts/:id",
-      element: <PromptShow />
-    },
-    {
       path: "/profile",
       element: <Profile />
     },
@@ -38,7 +34,7 @@ function App() {
 
   return (
     <>
-    <Navbar/>
+      <Navbar />
       <AnimatePresence mode="wait">
         {React.cloneElement(element, { key: location.pathname })}
       </AnimatePresence>

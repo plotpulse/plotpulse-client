@@ -1,5 +1,4 @@
 import * as promptAPI from './prompt-api'
-import { IPrompt } from '../shared-types'
 
 
 
