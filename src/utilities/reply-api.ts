@@ -15,7 +15,7 @@ export async function getAll(promptId: number){
             }
         }
 
-        const replyURL = `${PROMPT_URL}/${promptId}`
+        const replyURL = `${PROMPT_URL}/${promptId}/replies/`
 
         const response = await fetch(replyURL, options)
         
@@ -45,7 +45,7 @@ export async function create(promptId:number, newReply: IReply){
             body: JSON.stringify(newReply)
         }
 
-        const replyURL = `${PROMPT_URL}/${promptId}`
+        const replyURL = `${PROMPT_URL}/${promptId}/replies/`
 
         const response = await fetch(replyURL, options)
 
