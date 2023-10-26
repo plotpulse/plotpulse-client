@@ -1,6 +1,5 @@
-import { useAuth0 } from '@auth0/auth0-react'
 import * as promptAPI from './prompt-api'
-import { IProfile, IPrompt } from '../shared-types'
+import { IPrompt } from '../shared-types'
 
 
 
