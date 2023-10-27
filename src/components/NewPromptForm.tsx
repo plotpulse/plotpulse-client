@@ -50,7 +50,7 @@ export function NewPromptForm() {
             if (promptResponse) {
                 setPromptForm(defaultForm)
                 // should go to id of the prompt, but my current setup doesn't allow for that
-                navigate("/prompts")
+                navigate(`/feed/${promptResponse.id}`)
             }else {
                 throw new Error("There was an issue creating your prompt.")
             }

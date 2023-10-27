@@ -20,6 +20,10 @@ function App() {
       element: <PromptsIndex />
     },
     {
+      path: "/feed/:promptId",
+      element: <PromptsIndex />
+    },
+    {
       path: "/profile",
       element: <Profile />
     },

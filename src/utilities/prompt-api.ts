@@ -1,4 +1,3 @@
-import { useAuth0 } from '@auth0/auth0-react'
 
 
 const PROMPT_URL = import.meta.env.VITE_PROMPT_URL
