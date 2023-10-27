@@ -3,6 +3,7 @@ import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, 
 import { IPrompt, IProfile } from "../../shared-types"
 import { Box, Grid, GridItem, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
+import { useParams } from "react-router";
 
 
 function getRandomid() {
@@ -288,6 +289,8 @@ const mockPrompts: IPrompt[] = [
 ];
 
 export function PromptsIndex() {
+    const { promptId } = useParams()
+    
 
     const [prompts, setPrompts] = useState<IPrompt[] | null>(null)
     const [ activePromptId, setActivePromptId ] = useState<number | null>(null)
@@ -298,6 +301,8 @@ export function PromptsIndex() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const borderValue = useColorModeValue('background.100', 'background.800')
+
+    
 
     function containsAny(sourceGenres: string[], targetGenres: string[]): boolean {
     
@@ -369,10 +374,18 @@ export function PromptsIndex() {
 
     }
 
+    function checkParams(){
+        if (Number(promptId)){
+            updateActive(Number(promptId))
+        }
+
+    }
+
 
 
     useEffect(() => { handleFetchPrompts() }, [isLoading])
     useEffect(() => { filterPrompts() }, [filters, prompts])
+    useEffect(() => { checkParams()}, [isLoading])
 
 
     function loaded() {

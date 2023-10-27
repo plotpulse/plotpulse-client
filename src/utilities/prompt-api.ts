@@ -1,19 +1,15 @@
-import { useAuth0 } from '@auth0/auth0-react'
-const { getAccessTokenSilently } = useAuth0()
+
 
 const PROMPT_URL = import.meta.env.VITE_PROMPT_URL
 
 
 export async function getAll(){
+
     try {
 
         const options = {
             method: 'GET',
-            headers: {
-
-                "Authorization": `bearer ${ await getAccessTokenSilently()}`
-
-            }
+            
         }
 
         const response = await fetch(PROMPT_URL, options)
@@ -31,7 +27,7 @@ export async function getAll(){
 
 }
 
-export async function create(newPrompt: {}){
+export async function create(token: string, newPrompt: {}){
 
     try {
 
@@ -39,7 +35,7 @@ export async function create(newPrompt: {}){
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+                "Authorization": `bearer ${ token }`
             },
             body: JSON.stringify(newPrompt)
         }
@@ -60,7 +56,8 @@ export async function create(newPrompt: {}){
 
 }
 
-export async function getOne(id: number){
+export async function getOne(token: string, id: number){
+    
 
     try {
 
@@ -68,7 +65,7 @@ export async function getOne(id: number){
             method: 'GET',
             headers: {
 
-                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+                "Authorization": `bearer ${ token }`
 
             }
         }

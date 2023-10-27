@@ -38,6 +38,8 @@ export { ActivePromptModal } from './ActivePromptModal'
 
 
 ///////////////////////////////////
+// PROMPT CREATE COMPONENTS
+export { NewPromptForm } from './NewPromptForm'
 
 
 

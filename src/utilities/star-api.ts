@@ -1,9 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-react'
-const { getAccessTokenSilently } = useAuth0()
+
 
 const STAR_URL = import.meta.env.VITE_STAR_URL
 
 export async function getOne(id: number){
+    const { getAccessTokenSilently } = useAuth0()
 
     try {
 
@@ -34,6 +35,7 @@ export async function getOne(id: number){
 }
 
 export async function create(newStar: {}){
+    const { getAccessTokenSilently } = useAuth0()
 
     try {
 
@@ -64,6 +66,7 @@ export async function create(newStar: {}){
 
 
 export async function destroy(id: number){
+    const { getAccessTokenSilently } = useAuth0()
 
     try {
         const options = {

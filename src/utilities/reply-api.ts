@@ -1,8 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
-const { getAccessTokenSilently } = useAuth0()
+
 const PROMPT_URL = import.meta.env.VITE_PROMPT_URL
 
 export async function getAll(promptId: number){
+    const { getAccessTokenSilently } = useAuth0()
     try {
 
         const options = {
@@ -32,6 +33,7 @@ export async function getAll(promptId: number){
 }
 
 export async function create(promptId:number, newReply: {}){
+    const { getAccessTokenSilently } = useAuth0()
 
     try {
 
