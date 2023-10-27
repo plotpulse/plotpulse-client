@@ -84,7 +84,6 @@ export function SignUpForm({ email }: Props) {
         }
 
     }
-    console.log("default form", defaultForm)
 
     useEffect(() => { handleProfile() }, [isLoading])
 
