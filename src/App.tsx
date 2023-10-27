@@ -2,7 +2,7 @@ import * as React from "react"
 import { useLocation, useRoutes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 
-import { Home, PromptsIndex, Profile, SignUp } from "./pages"
+import { Home, PromptsIndex, Profile, SignUp, PromptCreate } from "./pages"
 
 import { Navbar } from "./components";
 
@@ -16,7 +16,7 @@ function App() {
       element: <Home />
     },
     {
-      path: "/prompts",
+      path: "/feed",
       element: <PromptsIndex />
     },
     {
@@ -26,6 +26,10 @@ function App() {
     {
       path: "/signup",
       element: <SignUp />
+    },
+    {
+      path: "/create",
+      element: <PromptCreate />
     },
   ])
   const location = useLocation()

@@ -91,13 +91,21 @@ export function Navbar() {
                                     <MenuItem>
                                         <ChakraLink
                                             as={RouterLink}
-                                            to='/prompts'>
-                                            Prompts
+                                            to='/feed'>
+                                            Feed
                                         </ChakraLink>
                                     </MenuItem>
 
                                     {profile ?
                                         <>
+                                            <MenuItem>
+                                                <ChakraLink
+                                                    as={RouterLink}
+                                                    to='/create'>
+                                                    Create
+                                                </ChakraLink>
+                                            </MenuItem>
+
                                             <MenuItem>
                                                 <ChakraLink
                                                     as={RouterLink}
