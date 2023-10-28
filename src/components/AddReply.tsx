@@ -1,5 +1,6 @@
 import { Box, BoxProps, Button, Flex, FormControl, FormHelperText, FormLabel, Textarea, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { createReply } from "../utilities/reply-service";
 
 
 interface AddReplyProps extends BoxProps {
@@ -29,6 +30,7 @@ export function AddReply({ promptId }: AddReplyProps) {
         evt.preventDefault()
 
         try {
+            const replyResponse = await createReply()
 
         } catch (error) {
 
