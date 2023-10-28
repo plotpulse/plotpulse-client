@@ -1,4 +1,4 @@
-import { Box, BoxProps, Button, FormControl, FormHelperText, FormLabel, Textarea, useColorModeValue } from "@chakra-ui/react";
+import { Box, BoxProps, Button, Flex, FormControl, FormHelperText, FormLabel, Textarea, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
 import { ChangeEvent, FormEvent, useState } from "react";
 
 
@@ -17,6 +17,11 @@ export function AddReply({ promptId }: AddReplyProps) {
     const [replyForm, setReplyForm] = useState(defaultForm)
     const borderValue = useColorModeValue('background.300', 'background.700')
     const focusBorderValue = useColorModeValue('accent.300', 'accent.600')
+    const { getButtonProps, getDisclosureProps } = useDisclosure()
+
+    const buttonProps = getButtonProps()
+    const disclosureProps = getDisclosureProps()
+
 
 
     async function handleSubmit(evt: FormEvent) {
@@ -40,25 +45,28 @@ export function AddReply({ promptId }: AddReplyProps) {
 
 
     return (
-        <Box>
-            <form>
-                <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
-                    <FormLabel>Reply</FormLabel>
-                    <Textarea focusBorderColor={focusBorderValue} name="response" value={replyForm.response} onChange={handleChange}></Textarea>
-                    <FormHelperText>
-                        Add a response
+        <Flex direction={"column"}>
+            <Button {...buttonProps}>
+                {disclosureProps.hidden ? "Add a Reply" : "Close"}
+            </Button>
+            <Box {...disclosureProps}>
+                <form>
+                    <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
+                        <FormLabel>Reply</FormLabel>
+                        <Textarea focusBorderColor={focusBorderValue} name="response" value={replyForm.response} onChange={handleChange}></Textarea>
+                        <FormHelperText>
+                            Add a response
 
-                    </FormHelperText>
-                </FormControl>
+                        </FormHelperText>
+                    </FormControl>
 
-                <Button type="submit">Submit</Button>
+                    <Button type="submit">Submit</Button>
+                </form>
 
-
-
-            </form>
-
-        </Box>
+            </Box>
+        </Flex>
     )
+
 
 
 
