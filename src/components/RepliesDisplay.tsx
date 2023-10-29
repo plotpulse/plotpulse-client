@@ -21,7 +21,6 @@ export function RepliesDisplay({ promptId, submitted }: RepliesDisplayProps) {
         try {
             setIsLoading(true)
             const repliesResponse = await getReplies(await getAccessTokenSilently(), promptId)
-            console.log(repliesResponse)
             if (repliesResponse) {
                 setReplies(repliesResponse)
                 setIsLoading(false)
@@ -34,11 +33,6 @@ export function RepliesDisplay({ promptId, submitted }: RepliesDisplayProps) {
             // something in the UI
 
         }
-    }
-
-    function forceLoad() {
-        console.log('hitting forceLoad')
-        setIsLoading(true)
     }
 
     function loaded() {
@@ -61,7 +55,6 @@ export function RepliesDisplay({ promptId, submitted }: RepliesDisplayProps) {
     }
 
     useEffect(() => { handleFetchReplies() }, [submitted])
-    // useEffect(() => { forceLoad() }, [submitted])
 
     return (
         <Box>
