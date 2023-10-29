@@ -9,7 +9,7 @@ import { ALL_GENRES } from "../constants";
 export function NewPromptForm() {
 
     const { user, getAccessTokenSilently } = useAuth0()
-    const email = user ? user.email : ""
+    const email = user?.email ? user.email : ""
 
 
 
