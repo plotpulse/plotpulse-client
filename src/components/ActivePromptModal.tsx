@@ -3,7 +3,7 @@ import { IProfile, IPrompt } from "../shared-types";
 import { getPrompt } from "../utilities/prompt-services";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from "react";
-import { AddReply } from ".";
+import { AddReply, RepliesDisplay } from ".";
 
 
 interface ActivePromptModalProps extends ModalProps {
@@ -16,6 +16,7 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
     const { user, getAccessTokenSilently } = useAuth0()
     const [prompt, setPrompt] = useState<IPrompt | null>(null)
     const [isLoading, setIsLoading] = useState(true)
+    const [submitted, setSubmitted] = useState(0)
 
     async function handleFetchPrompt() {
         if (!activePromptId) return
@@ -42,13 +43,11 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
         return (
             <>
                 {prompt.content}
-                <AddReply promptId={prompt.id}/>
+                <AddReply promptId={prompt.id} submitted={submitted} setSubmitted={setSubmitted}/>
 
-                {prompt.replies?.map(reply => {
-                    return (
-                        <p>{reply.response}</p>
-                    )
-                })}
+                <RepliesDisplay promptId={prompt.id} submitted={submitted}/>
+
+                
             </>
 
 
@@ -70,7 +69,7 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
                 <ModalBody>
 
                     {/* <ExpandedPrompt/>
-                    <RepliesDisplay/> */}
+                     */}
                     {isLoading ? <p>Loading...</p> : loaded()}
 
 
