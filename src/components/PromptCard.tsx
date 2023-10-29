@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge, useColorModeValue } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge, useColorModeValue, Button, Box } from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
 import { AddIcon, StarIcon } from '@chakra-ui/icons'
 
@@ -12,7 +12,8 @@ export function PromptCard({ prompt }: PromptCardProps) {
 
     return (
         <Card variant={"main"} mx={4}>
-            <CardHeader>
+            <CardHeader display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
+                <Box>
                 @{user.displayName}
                 {genres.map((genre, idx) => {
                     return (
@@ -20,24 +21,22 @@ export function PromptCard({ prompt }: PromptCardProps) {
 
                     )
                 })}
+
+                </Box>
+                <Box>
+                    <Button>Star</Button>
+
+
+                </Box>
             </CardHeader>
             <CardBody>
                 <Text>{content}</Text>
             </CardBody>
-            <CardFooter>
-                <HStack spacing={12}>
-                    <HStack>
-                        <Text>{replies?.length}</Text>
-                        <AddIcon/>
-                    </HStack>
+            <CardFooter display={'flex'} flexDirection={'column'}>
+                    <Button> {replies?.length} Replies</Button>
 
-                    <HStack>
-                        <Text>{stars?.length}</Text>
-                        <StarIcon
-                        
-                        color={"red"}/>
-                    </HStack>
-                </HStack>
+                
+                
             </CardFooter>
         </Card>
 
