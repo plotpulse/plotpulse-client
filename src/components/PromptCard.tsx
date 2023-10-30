@@ -7,36 +7,36 @@ interface PromptCardProps {
 }
 
 export function PromptCard({ prompt }: PromptCardProps) {
-    const { content, user, stars, replies, genres } = prompt
+    const { id, content, user, stars, replies, genres } = prompt
     const badgeBGValue = useColorModeValue('accent.100', 'accent.700')
 
     return (
         <Card variant={"main"} mx={4}>
             <CardHeader display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
                 <Box>
-                @{user.displayName}
-                {genres.map((genre, idx) => {
-                    return (
-                        <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} mx={2} p={1}>{genre}</Badge>
+                    @{user.displayName}
+                    {genres.map((genre, idx) => {
+                        return (
+                            <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} mx={2} p={1}>{genre}</Badge>
 
-                    )
-                })}
-
-                </Box>
-                <Box>
-                    <Button>Star</Button>
-
+                        )
+                    })}
 
                 </Box>
+
+                <Button rightIcon={<StarIcon />}>{stars?.length}</Button>
+
+
+
             </CardHeader>
             <CardBody>
                 <Text>{content}</Text>
             </CardBody>
             <CardFooter display={'flex'} flexDirection={'column'}>
-                    <Button> {replies?.length} Replies</Button>
+                <Button> {replies?.length} Replies</Button>
 
-                
-                
+
+
             </CardFooter>
         </Card>
 
