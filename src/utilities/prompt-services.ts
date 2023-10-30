@@ -1,6 +1,12 @@
 import * as promptAPI from './prompt-api'
 import { useAuth0 } from '@auth0/auth0-react'
 
+interface NewPrompt {
+    content: string;
+    genres: string[];
+    user: string;
+}
+
 
 export async function getAllPrompts() {
 
@@ -33,14 +39,8 @@ export async function getPrompt(token: string, id: number){
     }
 }
 
-export async function createPrompt(token: string, newPrompt: {}){
-    // console.log('create prompt service')
-    // const { user } = useAuth0()
-
-    // const email = user ? user.email : ""
-
-    // const reshaped = {...newPrompt, user: email}
-    // console.log(reshaped)
+export async function createPrompt(token: string, newPrompt: NewPrompt ){
+    newPrompt.genres = newPrompt.genres.filter(genre => genre !== null)
 
 
     try {

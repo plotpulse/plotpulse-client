@@ -1,9 +1,9 @@
 
 import * as replyAPI from './reply-api'
 
-export async function getReplies(promptId: number) {
+export async function getReplies(token: string, promptId: number) {
     try {
-        const allReplies = await replyAPI.getAll(promptId)
+        const allReplies = await replyAPI.getAll(token, promptId)
         return allReplies
 
 
@@ -14,10 +14,10 @@ export async function getReplies(promptId: number) {
     }
 }
 
-export async function createReply(promptId: number, newReply: {}) {
+export async function createReply(token: string, promptId: number, newReply: {}) {
 
     try {
-        const replyResponse = await replyAPI.create(promptId, newReply)
+        const replyResponse = await replyAPI.create(token, promptId, newReply)
         return replyResponse
 
     } catch (error) {

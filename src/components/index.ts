@@ -34,6 +34,8 @@ export { PromptCard } from './PromptCard'
 export { GenreFilterButton} from './GenreFilterButton'
 export { Suggestions } from './Suggestions'
 export { ActivePromptModal } from './ActivePromptModal'
+export { AddReply } from './AddReply'
+export { RepliesDisplay } from './RepliesDisplay'
 
 
 
