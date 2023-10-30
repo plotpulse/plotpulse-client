@@ -384,7 +384,7 @@ export function PromptsIndex() {
 
 
 
-    useEffect(() => { handleFetchPrompts() }, [isLoading])
+    useEffect(() => { handleFetchPrompts() }, [isLoading, isOpen])
     useEffect(() => { filterPrompts() }, [filters, prompts])
     useEffect(() => { checkParams()}, [isLoading])
 
