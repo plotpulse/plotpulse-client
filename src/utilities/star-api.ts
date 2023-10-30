@@ -1,10 +1,7 @@
-import { useAuth0 } from '@auth0/auth0-react'
 
+const PROMPT_URL = import.meta.env.VITE_PROMPT_URL
 
-const STAR_URL = import.meta.env.VITE_STAR_URL
-
-export async function getOne(id: number){
-    const { getAccessTokenSilently } = useAuth0()
+export async function getOne(token: string, promptId: number, starId: number){
 
     try {
 
@@ -12,12 +9,12 @@ export async function getOne(id: number){
             method: 'GET',
             headers: {
 
-                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+                "Authorization": `bearer ${ token }`
 
             }
         }
         
-        const url = `${STAR_URL}/${id}`
+        const url = `${PROMPT_URL}/${promptId}/stars/${starId}`
 
         const response = await fetch(url, options)
         
@@ -34,8 +31,8 @@ export async function getOne(id: number){
    
 }
 
-export async function create(newStar: {}){
-    const { getAccessTokenSilently } = useAuth0()
+export async function create(token: string, promptId: number, newStar: {}){
+    
 
     try {
 
@@ -43,12 +40,14 @@ export async function create(newStar: {}){
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+                "Authorization": `bearer ${ token }`
             },
             body: JSON.stringify(newStar)
         }
 
-        const response = await fetch(STAR_URL, options)
+        const url = `${PROMPT_URL}/${promptId}/stars`
+
+        const response = await fetch(url, options)
 
         if (response.ok){
             return response.json()
@@ -65,17 +64,16 @@ export async function create(newStar: {}){
 }
 
 
-export async function destroy(id: number){
-    const { getAccessTokenSilently } = useAuth0()
+export async function destroy(token: string, promptId: number, starId: number){
 
     try {
         const options = {
             method: 'DELETE',
             headers: {
-                "Authorization": `bearer ${ await getAccessTokenSilently()}`
+                "Authorization": `bearer ${ token }`
             },
         }
-        const url = `${STAR_URL}/${id}`
+        const url = `${PROMPT_URL}/${promptId}/stars/${starId}`
         const response = await fetch(url, options)
 
 
@@ -88,4 +86,31 @@ export async function destroy(id: number){
         console.log(error)
         return error
     }
+}
+
+export async function getAll(token: string, promptId: number){
+
+    try {
+        const options = {
+            method: 'GET',
+            headers: {
+                "Authorization": `bearer ${ token }`
+            },
+        }
+
+        const url = `${PROMPT_URL}/${promptId}/stars`
+
+        const response = await fetch(url, options)
+        
+        if (response.ok){
+            return response.json()
+        } else {
+            throw new Error('Invalid Request')
+        }
+        
+    } catch (error) {
+        return error
+        
+    }
+
 }

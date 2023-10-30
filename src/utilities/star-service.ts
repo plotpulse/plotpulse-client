@@ -2,10 +2,25 @@
 import * as starAPI from './star-api'
 
 
-export async function getStar(starId: number){
+export async function getAllStars(token: string, promptId: number ) {
 
     try {
-        const oneStar = await starAPI.getOne(starId)
+        const allStars = await starAPI.getAll(token, promptId)
+        return allStars
+        
+    } catch (error) {
+        console.log(error)
+        throw new Error('Unable to fetch stars')
+        
+        
+    }
+    
+}
+
+export async function getStar(token: string, promptId: number, starId: number){
+
+    try {
+        const oneStar = await starAPI.getOne(token, promptId, starId)
         return oneStar
         
     } catch (error) {
@@ -16,9 +31,9 @@ export async function getStar(starId: number){
     }
 }
 
-export async function createStar(newStar: {}){
+export async function createStar(token: string, promptId: number, newStar: {}){
     try {
-        const starResponse = await starAPI.create(newStar)
+        const starResponse = await starAPI.create(token, promptId, newStar)
         return starResponse
         
     } catch (error) {
@@ -28,10 +43,10 @@ export async function createStar(newStar: {}){
     }
 }
 
-export async function deleteStar(starId: number){
+export async function deleteStar(token: string, promptId: number, starId: number){
 
     try {
-        const deletedStar = await starAPI.destroy(starId)
+        const deletedStar = await starAPI.destroy(token, promptId, starId)
         return deletedStar
         
     } catch (error) {
