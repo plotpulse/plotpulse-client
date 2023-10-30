@@ -36,6 +36,7 @@ export { Suggestions } from './Suggestions'
 export { ActivePromptModal } from './ActivePromptModal'
 export { AddReply } from './AddReply'
 export { RepliesDisplay } from './RepliesDisplay'
+export { StarButton } from './StarButton'
 
 
 

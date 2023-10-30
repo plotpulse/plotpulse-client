@@ -98,7 +98,7 @@ export async function getAll(token: string, promptId: number){
             },
         }
 
-        const url = `${PROMPT_URL}/${promptId}/stars`
+        const url = `${PROMPT_URL}/${promptId}/stars/`
 
         const response = await fetch(url, options)
         

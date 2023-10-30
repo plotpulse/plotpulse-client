@@ -19,9 +19,11 @@ export function Suggestions({prompts, updateActive}: SuggestionsProps) {
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const borderValue = useColorModeValue('background.100', 'background.800')
 
-    const email = user?.email ?? ""
+    const email = user ? user.email : ""
 
     async function handleFetchProfile() {
+
+        if(!email) return
 
         try {
             const response = await getProfile(await getAccessTokenSilently(), email)
@@ -55,7 +57,7 @@ export function Suggestions({prompts, updateActive}: SuggestionsProps) {
             
             return (
                 
-                    <Button key={suggested?.id} variant={'outline'} colorScheme="accent" size={['xs', null, 'sm']} onClick={() => updateActive(suggested?.id)}>#{suggested?.id} - {genre.toUpperCase()}</Button>
+                    <Button key={`${suggested?.id}${genre}`} variant={'outline'} colorScheme="accent" size={['xs', null, 'sm']} onClick={() => updateActive(suggested?.id)}>#{suggested?.id} - {genre.toUpperCase()}</Button>
 
                     
             )

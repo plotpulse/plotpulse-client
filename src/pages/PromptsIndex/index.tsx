@@ -4,6 +4,7 @@ import { IPrompt, IProfile } from "../../shared-types"
 import { Box, Grid, GridItem, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 import { useParams } from "react-router";
+import { getAllPrompts } from "../../utilities/prompt-services";
 
 
 function getRandomid() {
@@ -340,9 +341,9 @@ export function PromptsIndex() {
     async function handleFetchPrompts() {
         try {
             // actually fetch from db soon
-            const response = [...mockPrompts].sort((a, b) => a.id - b.id)
+            const promptResponse = await getAllPrompts()
             //prompts should be in a different order each page reload
-            setPrompts(response)
+            setPrompts(promptResponse)
             setIsLoading(false)
             // currently relying on useEffect and the filter prompts function to trigger loading state
 
