@@ -6,6 +6,10 @@ const PROFILE_URL = import.meta.env.VITE_PROFILE_URL
 export async function getProfile(token: string, userEmail: string): Promise<IProfile | null>{
     try {
 
+        if (userEmail === "") {
+            throw new Error('no email provided')
+        }
+
         const options: RequestInit = {
 
             method: 'GET',

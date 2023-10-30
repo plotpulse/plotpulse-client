@@ -19,6 +19,7 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
     const [submitted, setSubmitted] = useState(0)
 
     async function handleFetchPrompt() {
+        
         if (!activePromptId) return
 
         try {
@@ -35,7 +36,7 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
         }
     }
 
-    useEffect(() => { handleFetchPrompt() }, [isLoading])
+    useEffect(() => { handleFetchPrompt() }, [isLoading, activePromptId])
 
     function loaded() {
         if (!prompt) return
