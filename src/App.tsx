@@ -38,7 +38,6 @@ function App() {
   ])
   const location = useLocation()
   if (!element) return null
-  console.log('hitting app')
 
   return (
     <>

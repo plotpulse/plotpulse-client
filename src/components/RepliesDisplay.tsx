@@ -16,7 +16,6 @@ export function RepliesDisplay({ promptId, submitted }: RepliesDisplayProps) {
     const [isLoading, setIsLoading] = useState(true)
 
     async function handleFetchReplies() {
-        console.log(submitted)
 
         try {
             setIsLoading(true)
