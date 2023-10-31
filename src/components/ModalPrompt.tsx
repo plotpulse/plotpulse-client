@@ -1,8 +1,6 @@
-import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge, useColorModeValue, Button, Box, Grid, GridItem } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter, Text, Badge, useColorModeValue, Box, Grid, GridItem } from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
-import { AddIcon, StarIcon, ChatIcon } from '@chakra-ui/icons'
-
-import { StarButton, ViewRepliesButton } from ".";
+import { StarButton, } from ".";
 
 interface ModalPromptProps {
     prompt: IPrompt;
@@ -22,15 +20,10 @@ export function ModalPrompt({ prompt }: ModalPromptProps) {
                     {genres.map((genre, idx) => {
                         return (
                             <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} mx={2} p={1}>{genre}</Badge>
-
                         )
                     })}
 
                 </Box>
-
-
-
-
 
             </CardHeader>
             <CardBody>
@@ -41,7 +34,6 @@ export function ModalPrompt({ prompt }: ModalPromptProps) {
                     </GridItem>
                     <GridItem colSpan={2}>
                         <StarButton promptId={id} my={2}/>
-                        
 
                     </GridItem>
                 </Grid>
