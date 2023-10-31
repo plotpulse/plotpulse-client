@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef, Ref, RefObject } from "react";
+import { useParams } from "react-router";
 import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptModal} from "../../components"
 import { IPrompt, } from "../../shared-types"
 import { Box, Grid, GridItem, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
-import { useParams } from "react-router";
 import { getAllPrompts } from "../../utilities/prompt-services"
-
 
 
 export function PromptsIndex() {
@@ -73,20 +72,12 @@ export function PromptsIndex() {
     }
 
     function topOfTl() {
-        // there is a typescript warning but it doesn't stop the functionality
-
-
-        if (tlRef) {
-            // i can't figure out this type error but tt is non-blocking
             
             const { current } = tlRef as RefObject<HTMLDivElement>
             current?.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
-
-
-        }
     }
 
     function updateActive(id: number){
@@ -101,7 +92,6 @@ export function PromptsIndex() {
         }
 
     }
-
 
 
     useEffect(() => { handleFetchPrompts() }, [isLoading, isOpen])
