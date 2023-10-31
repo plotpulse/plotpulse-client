@@ -1,9 +1,9 @@
 import { HStack, Link as ChakraLink, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image, MenuButton, Menu, MenuList, MenuItem } from "@chakra-ui/react"
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { useAuth0, RedirectLoginOptions } from '@auth0/auth0-react'
 import { getProfile } from "../utilities/auth-services"
-import { useEffect, useState } from "react"
+import { useEffect, useState, } from "react"
 import { IProfile } from "../shared-types"
 
 export function Navbar() {
@@ -17,6 +17,8 @@ export function Navbar() {
     const srcValue = useColorModeValue('/black-books.svg', '/white-books.svg')
 
     const { user, loginWithRedirect, logout, getAccessTokenSilently } = useAuth0()
+
+    const navigate = useNavigate()
 
     // REFACTOR to an env, possibly with a "constants" import folder
     // REFACTOR to handle for deployment
@@ -88,30 +90,18 @@ export function Navbar() {
 
                                 </MenuButton>
                                 <MenuList>
-                                    <MenuItem>
-                                        <ChakraLink
-                                            as={RouterLink}
-                                            to='/feed'>
-                                            Feed
-                                        </ChakraLink>
+                                    <MenuItem onClick={() => navigate('/feed')}>
+                                        Feed
                                     </MenuItem>
 
                                     {profile ?
                                         <>
-                                            <MenuItem>
-                                                <ChakraLink
-                                                    as={RouterLink}
-                                                    to='/create'>
-                                                    Create
-                                                </ChakraLink>
+                                            <MenuItem onClick={() => navigate('/create')}>
+                                                Create
                                             </MenuItem>
 
-                                            <MenuItem>
-                                                <ChakraLink
-                                                    as={RouterLink}
-                                                    to='/profile'>
-                                                    Profile
-                                                </ChakraLink>
+                                            <MenuItem onClick={() => navigate('/profile')}>
+                                                Profile
                                             </MenuItem>
 
                                             <MenuItem onClick={() => logout()}>
