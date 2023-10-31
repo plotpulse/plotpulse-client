@@ -3,7 +3,7 @@ import { IProfile, IPrompt } from "../shared-types";
 import { getPrompt } from "../utilities/prompt-services";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from "react";
-import { AddReply, PromptCard, RepliesDisplay } from ".";
+import { AddReply, ModalPrompt, RepliesDisplay } from ".";
 
 
 interface ActivePromptModalProps extends ModalProps {
@@ -43,8 +43,8 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
 
         return (
             <>
-                {/* <PromptCard prompt={prompt}/> */}
-                {prompt.content}
+               <ModalPrompt prompt={prompt}/> 
+                
 
 
                 <AddReply promptId={prompt.id} submitted={submitted} setSubmitted={setSubmitted}/>
