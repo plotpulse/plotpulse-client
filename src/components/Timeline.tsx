@@ -5,6 +5,7 @@ import { PromptCard } from ".";
 
 interface TimeLineProps extends StackProps {
     prompts: IPrompt[] | null;
+    updateActive: (id: number) => void;
     
 }
 
@@ -12,12 +13,12 @@ interface TimeLineProps extends StackProps {
 
 export const Timeline = forwardRef((props: TimeLineProps, ref: ForwardedRef<HTMLDivElement>) => {
     const borderValue = useColorModeValue('background.100','background.800')
-    const { prompts } = props;
+    const { prompts, updateActive } = props;
     
 
     const cards = prompts?.map(prompt => {
         return (
-            <PromptCard key={prompt.id} prompt={prompt} />
+            <PromptCard key={prompt.id} prompt={prompt} updateActive={updateActive}/>
         )
     })
 

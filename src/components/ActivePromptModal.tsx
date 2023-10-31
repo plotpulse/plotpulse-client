@@ -43,7 +43,10 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
 
         return (
             <>
-                <PromptCard prompt={prompt}/>
+                {/* <PromptCard prompt={prompt}/> */}
+                {prompt.content}
+
+
                 <AddReply promptId={prompt.id} submitted={submitted} setSubmitted={setSubmitted}/>
 
                 <RepliesDisplay promptId={prompt.id} submitted={submitted}/>

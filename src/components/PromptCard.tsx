@@ -2,15 +2,16 @@ import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge, useColorMo
 import { IPrompt } from "../shared-types";
 import { AddIcon, StarIcon, ChatIcon } from '@chakra-ui/icons'
 
-import { StarButton } from ".";
+import { StarButton, ViewRepliesButton } from ".";
 
 interface PromptCardProps {
     prompt: IPrompt;
+    updateActive: (id: number) => void;
 }
 
-export function PromptCard({ prompt }: PromptCardProps) {
+export function PromptCard({ prompt, updateActive }: PromptCardProps) {
 
-    const { id, content, user, stars, replies, genres } = prompt
+    const { id, content, user, genres } = prompt
     const badgeBGValue = useColorModeValue('accent.100', 'accent.700')
 
     return (
@@ -41,7 +42,7 @@ export function PromptCard({ prompt }: PromptCardProps) {
                     </GridItem>
                     <GridItem colSpan={2}>
                         <StarButton promptId={id} my={2}/>
-                        <Button rightIcon={<ChatIcon/>} my={2}> {replies?.length ?? 0}</Button>
+                        <ViewRepliesButton promptId={id} updateActive={updateActive} my={2} ></ViewRepliesButton>
 
                     </GridItem>
                 </Grid>

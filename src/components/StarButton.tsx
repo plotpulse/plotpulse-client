@@ -39,13 +39,12 @@ export function StarButton({promptId, ...otherProps}: StarButtonProps){
     useEffect(() => { handleFetchStars() }, [isLoading])
     useEffect(() => { checkStarred() }, [stars])
 
-    console.log(`prompt number ${promptId} has ${stars?.length} stars`, stars)
 
     function userStarred(){
 
         if (stars === null) return false
         for (let i = 0; i < stars.length; i++){
-            if (stars[i].user?.id === user?.email && stars[i]?.prompt?.id === promptId){
+            if (stars[i].user?.id === user?.email){
                 setUserStarredId(stars[i].id)
                 return true
             }
