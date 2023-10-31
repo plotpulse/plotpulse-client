@@ -38,6 +38,7 @@ export { AddReply } from './AddReply'
 export { RepliesDisplay } from './RepliesDisplay'
 export { StarButton } from './StarButton'
 export { ViewRepliesButton } from './ViewRepliesButton'
+export { ModalPrompt } from './ModalPrompt'
 
 
 
