@@ -1,5 +1,5 @@
 import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter, ModalProps } from "@chakra-ui/react";
-import { IProfile, IPrompt } from "../shared-types";
+import { IPrompt } from "../shared-types";
 import { getPrompt } from "../utilities/prompt-services";
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from "react";
@@ -67,8 +67,6 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
 
                 <ModalBody>
 
-                    {/* <ExpandedPrompt/>
-                     */}
                     {isLoading ? <p>Loading...</p> : loaded()}
 
 

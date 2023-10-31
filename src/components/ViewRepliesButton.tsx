@@ -45,7 +45,7 @@ export function ViewRepliesButton({promptId, updateActive, ...otherProps}: ViewR
 
         if (replies === null) return false
         for (let i = 0; i < replies.length; i++){
-            if (replies[i].user?.id === user?.email){
+            if (replies[i].user?.id === email){
                 return true
             }
         }

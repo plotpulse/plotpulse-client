@@ -1,7 +1,5 @@
-import { Card, CardHeader, CardBody, CardFooter, HStack, Text, Badge, useColorModeValue, Button, Box, Grid, GridItem } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter, Text, Badge, useColorModeValue, Box, Grid, GridItem } from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
-import { AddIcon, StarIcon, ChatIcon } from '@chakra-ui/icons'
-
 import { StarButton, ViewRepliesButton } from ".";
 
 interface PromptCardProps {
@@ -23,15 +21,9 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
                     {genres.map((genre, idx) => {
                         return (
                             <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} mx={2} p={1}>{genre}</Badge>
-
                         )
                     })}
-
                 </Box>
-
-
-
-
 
             </CardHeader>
             <CardBody>
@@ -49,9 +41,6 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
 
             </CardBody>
             <CardFooter display={'flex'} flexDirection={'column'}>
-                
-
-
 
             </CardFooter>
         </Card>
