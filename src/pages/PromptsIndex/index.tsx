@@ -384,7 +384,7 @@ export function PromptsIndex() {
 
 
 
-    useEffect(() => { handleFetchPrompts() }, [isLoading])
+    useEffect(() => { handleFetchPrompts() }, [isLoading, isOpen])
     useEffect(() => { filterPrompts() }, [filters, prompts])
     useEffect(() => { checkParams()}, [isLoading])
 
@@ -401,7 +401,7 @@ export function PromptsIndex() {
                     </GridItem>
 
                     <GridItem colSpan={6}>
-                        <Timeline prompts={filteredPrompts} ref={tlRef as Ref<HTMLDivElement>} />
+                        <Timeline prompts={filteredPrompts} updateActive={updateActive} ref={tlRef as Ref<HTMLDivElement>} />
                     </GridItem>
 
                     <GridItem colSpan={3} >

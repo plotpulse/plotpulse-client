@@ -9,7 +9,7 @@ interface StarButtonProps extends ButtonProps {
     promptId: number;
 }
 
-export function StarButton({promptId}: StarButtonProps){
+export function StarButton({promptId, ...otherProps}: StarButtonProps){
 
     const [ isLoading, setIsLoading ] = useState(true)
     const [ isStarred, setIsStarred ] = useState(false)
@@ -38,6 +38,7 @@ export function StarButton({promptId}: StarButtonProps){
 
     useEffect(() => { handleFetchStars() }, [isLoading])
     useEffect(() => { checkStarred() }, [stars])
+
 
     function userStarred(){
 
@@ -78,7 +79,7 @@ export function StarButton({promptId}: StarButtonProps){
     function loaded(){
 
         return (
-            <Button rightIcon={<StarIcon color={isStarred ? 'accent.400' : 'gray.400'} />} onClick={handleButtonClick}>{stars?.length}</Button>
+            <Button {...otherProps} rightIcon={<StarIcon color={isStarred ? 'accent.400' : 'gray.400'} />} onClick={handleButtonClick}>{stars?.length}</Button>
         )
     }
 

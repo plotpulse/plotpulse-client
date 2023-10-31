@@ -18,28 +18,28 @@ export function Suggestions({prompts, updateActive}: SuggestionsProps) {
     const [profile, setProfile] = useState<IProfile | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
     const borderValue = useColorModeValue('background.100', 'background.800')
-
     const email = user ? user.email : ""
+    
 
     async function handleFetchProfile() {
 
-        if(!email) return
+        
 
         try {
             const response = await getProfile(await getAccessTokenSilently(), email)
 
             if (response?.id === email) {
                 setProfile(response)
+                setIsLoading(false)
             } else {
                 throw new Error("There was an issue loading your associated profile.")
             }
 
         } catch (error) {
-            console.log(error)
-
-        } finally {
+            console.log('error in suggestions', email)
             setIsLoading(false)
-        }
+
+        } 
 
     }
 
