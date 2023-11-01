@@ -18,7 +18,7 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
         <Card variant={"prompt"} mx={4}
         >
             <CardHeader >
-                <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} my={2}>
+                <Box display={'flex'} flexWrap={'wrap'} flexDirection={'row'} justifyContent={'space-between'} my={2}>
                     <Box>
                         @{user?.displayName}
 
@@ -31,7 +31,7 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
 
                 </Box>
 
-                <Box display={'flex'} flexDirection={'row'} justifyContent={'flex-end'} gap={4} my={2}>
+                <Box display={'flex'} flexWrap={'wrap'} flexDirection={'row'} justifyContent={'flex-end'} gap={4} my={2}>
                         {genres.map((genre, idx) => {
                             return (
                                 <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} p={2}>{genre}</Badge>
