@@ -1,6 +1,4 @@
 import { Box, BoxProps, Button, Flex, } from "@chakra-ui/react"
-import { Dispatch, SetStateAction } from "react";
-import { ALL_GENRES } from "../constants";
 import { useNavigate } from "react-router";
 
 interface TimelineHeaderProps extends BoxProps {

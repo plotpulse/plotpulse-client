@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { IProfile } from "../shared-types";
 import { createProfile, getProfile } from "../utilities/auth-services";
 import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Checkbox, Textarea, Input, useColorModeValue, Heading, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";

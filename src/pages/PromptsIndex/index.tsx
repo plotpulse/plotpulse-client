@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef, Ref, RefObject } from "react";
 import { useParams } from "react-router";
-import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptModal, FilterControls} from "../../components"
+import { PageWrapper, TimelineHeader, Timeline, Suggestions, ActivePromptModal, FilterControls} from "../../components"
 import { IPrompt, } from "../../shared-types"
-import { Box, Grid, GridItem, useColorModeValue, useDisclosure, useMediaQuery, useBreakpointValue } from "@chakra-ui/react";
+import { Grid, GridItem, useDisclosure, useBreakpointValue } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 import { getAllPrompts } from "../../utilities/prompt-services"
 
@@ -19,7 +19,7 @@ export function PromptsIndex() {
     const tlRef: Ref<HTMLDivElement | undefined> = useRef();
 
     const { isOpen, onOpen, onClose } = useDisclosure()
-    const borderValue = useColorModeValue('background.100', 'background.800')
+   
     const filterPanelHidden = useBreakpointValue({base: true, lg: false})
     const suggestionsPanelHidden = useBreakpointValue({base: true, md: false})
 
