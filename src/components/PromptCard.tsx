@@ -13,7 +13,7 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
     const badgeBGValue = useColorModeValue('accent.100', 'accent.700')
 
     return (
-        <Card variant={"main"} mx={4}
+        <Card variant={"prompt"} mx={4}
             _hover={{ scale: 1.1 }}>
             <CardHeader display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
                 <Box>

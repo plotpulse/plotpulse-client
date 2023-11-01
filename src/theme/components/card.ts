@@ -29,11 +29,27 @@ const variants = {
         (props: StyleFunctionProps) => ({
 
             container: {
-                backgroundColor: mode('background.100', 'background.900')(props),
-                borderColor: mode('background.200', 'background.800')(props),
+                backgroundColor: mode('background.100', 'background.800')(props),
+                borderColor: mode('background.200', 'background.700')(props),
                 borderWidth: '5px',
                 borderBottomLeftRadius: '60',
                 borderTopRightRadius: '60',
+
+
+            }
+
+        }),
+    ),
+    prompt: definePartsStyle(
+        (props: StyleFunctionProps) => ({
+
+            container: {
+                backgroundColor: mode('background.50', 'background.900')(props),
+                borderColor: mode('accent.100', 'accent.800')(props),
+                borderWidth: '6px',
+                padding: '4',
+                boxShadow: '2px',
+                borderStyle: 'inset'
 
 
             }
