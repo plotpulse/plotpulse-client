@@ -9,7 +9,9 @@ interface PromptCardProps {
 
 export function PromptCard({ prompt, updateActive }: PromptCardProps) {
 
-    const { id, content, user, genres } = prompt
+    const { id, content, user, genres, created } = prompt
+    const date = new Date(created)
+    console.log(prompt)
     const badgeBGValue = useColorModeValue('accent.100', 'accent.700')
 
     return (
@@ -19,6 +21,10 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
                 <Box>
                     @{user?.displayName}
                     
+                </Box>
+                <Box>
+                    {date.toLocaleDateString()}
+
                 </Box>
 
             </CardHeader>

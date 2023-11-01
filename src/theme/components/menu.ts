@@ -27,7 +27,7 @@ const baseStyle = definePartsStyle(
           
           
               my: '4',
-              bg: mode('WhiteAlpha400', 'BlackAlpha400')(props),
+              bg: mode('whiteAlpha.400', 'blackAlpha.400')(props),
               _hover: {
                 bg: mode('accent.50', 'accent.600')(props),
               },

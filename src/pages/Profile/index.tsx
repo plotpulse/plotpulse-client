@@ -15,7 +15,7 @@ export function Profile() {
     const [profile, setProfile] = useState<IProfile | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
-    const email = user?.email ?? ""
+    const email = user?.email ? user.email : ""
 
     async function handleFetchProfile() {
 
