@@ -16,34 +16,38 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
 
     return (
         <Card variant={"prompt"} mx={4}
-            _hover={{ scale: 1.1 }}>
-            <CardHeader display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
-                <Box>
-                    @{user?.displayName}
-                    
-                </Box>
-                <Box>
-                    {date.toLocaleDateString()}
+        >
+            <CardHeader >
+                <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'} my={2}>
+                    <Box>
+                        @{user?.displayName}
+
+                    </Box>
+                    <Box>
+                        {date.toLocaleDateString()}
+
+                    </Box>
+
 
                 </Box>
+
+                <Box display={'flex'} flexDirection={'row'} justifyContent={'flex-end'} gap={4} my={2}>
+                        {genres.map((genre, idx) => {
+                            return (
+                                <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} p={2}>{genre}</Badge>
+                            )
+                        })}
+
+
+                    </Box>
+
 
             </CardHeader>
             <CardBody>
-                <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
-                    <GridItem colSpan={10}>
-                        <Text>{content}</Text>
 
-                    </GridItem>
-                    <GridItem colSpan={2} display={'flex'} flexDirection={'column'} alignItems={'flex-end'}>
-                    {genres.map((genre, idx) => {
-                        return (
-                            <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} p={2}>{genre}</Badge>
-                        )
-                    })}
+            <Text >{content}</Text>
 
-
-                    </GridItem>
-                </Grid>
+                
 
             </CardBody>
             <CardFooter display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
