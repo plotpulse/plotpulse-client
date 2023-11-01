@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, Ref, RefObject } from "react";
 import { useParams } from "react-router";
 import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptModal} from "../../components"
 import { IPrompt, } from "../../shared-types"
-import { Box, Grid, GridItem, useColorModeValue, useDisclosure, } from "@chakra-ui/react";
+import { Box, Grid, GridItem, useColorModeValue, useDisclosure, useMediaQuery, useBreakpointValue } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 import { getAllPrompts } from "../../utilities/prompt-services"
 
@@ -20,6 +20,9 @@ export function PromptsIndex() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const borderValue = useColorModeValue('background.100', 'background.800')
+    const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
+    const filterPanelHidden = useBreakpointValue({base: true, lg: false})
+    const suggestionsPanelHidden = useBreakpointValue({base: true, md: false})
 
     
 
@@ -106,15 +109,16 @@ export function PromptsIndex() {
 
                 <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
 
-                    <GridItem colSpan={3} w={'100%'} >
+                    <GridItem colSpan={3} hidden={suggestionsPanelHidden}>
                         <Suggestions prompts={prompts} updateActive={updateActive}/>
                     </GridItem>
 
-                    <GridItem colSpan={6}>
+                    <GridItem colSpan={{base: 12, md: 9, lg:6}}>
                         <Timeline prompts={filteredPrompts} updateActive={updateActive} ref={tlRef as Ref<HTMLDivElement>} />
                     </GridItem>
 
-                    <GridItem colSpan={3} >
+                    
+                    <GridItem colSpan={3} hidden={filterPanelHidden} >
                         <Box mx={2} borderLeftWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
                             {ALL_GENRES.map((genre, idx) => {
 
@@ -124,6 +128,10 @@ export function PromptsIndex() {
                             })}
                         </Box>
                     </GridItem>
+                    
+                   
+
+                    
                 </Grid>
                 <ActivePromptModal activePromptId={activePromptId} isOpen={isOpen} onClose={onClose} children></ActivePromptModal>
             </>
