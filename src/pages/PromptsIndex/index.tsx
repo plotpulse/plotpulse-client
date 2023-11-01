@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Ref, RefObject } from "react";
 import { useParams } from "react-router";
-import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptModal} from "../../components"
+import { PageWrapper, TimelineHeader, Timeline, GenreFilterButton, Suggestions, ActivePromptModal, FilterControls} from "../../components"
 import { IPrompt, } from "../../shared-types"
 import { Box, Grid, GridItem, useColorModeValue, useDisclosure, useMediaQuery, useBreakpointValue } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
@@ -20,7 +20,6 @@ export function PromptsIndex() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
     const borderValue = useColorModeValue('background.100', 'background.800')
-    const [isLargerThan800] = useMediaQuery('(min-width: 800px)')
     const filterPanelHidden = useBreakpointValue({base: true, lg: false})
     const suggestionsPanelHidden = useBreakpointValue({base: true, md: false})
 
@@ -105,32 +104,25 @@ export function PromptsIndex() {
     function loaded() {
         return (
             <>
-                <TimelineHeader topOfTl={topOfTl} setFilters={setFilters} />
+                <TimelineHeader topOfTl={topOfTl} />
 
-                <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
+                <Grid templateColumns={'repeat(12, 1fr)'} templateRows='repeat(2, 1fr)' gap={2} maxH={'80vh'}>
 
-                    <GridItem colSpan={3} hidden={suggestionsPanelHidden}>
+                    <GridItem colSpan={3} rowSpan={2} hidden={suggestionsPanelHidden} overflow={'auto'}>
                         <Suggestions prompts={prompts} updateActive={updateActive}/>
+                        <FilterControls filters={filters} handleFilter={handleFilter} setFilters={setFilters} hidden={!filterPanelHidden}/>
                     </GridItem>
+                    
+                    
 
-                    <GridItem colSpan={{base: 12, md: 9, lg:6}}>
+                    <GridItem colSpan={{base: 12, md: 9, lg:6}} rowSpan={2}>
                         <Timeline prompts={filteredPrompts} updateActive={updateActive} ref={tlRef as Ref<HTMLDivElement>} />
                     </GridItem>
 
                     
-                    <GridItem colSpan={3} hidden={filterPanelHidden} >
-                        <Box mx={2} borderLeftWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
-                            {ALL_GENRES.map((genre, idx) => {
-
-                                return (
-                                    <GenreFilterButton key={idx} genre={genre} handleFilter={handleFilter} filters={filters} />
-                                )
-                            })}
-                        </Box>
+                    <GridItem colSpan={3} rowSpan={1} hidden={filterPanelHidden} >
+                        <FilterControls filters={filters} handleFilter={handleFilter} setFilters={setFilters}/>
                     </GridItem>
-                    
-                   
-
                     
                 </Grid>
                 <ActivePromptModal activePromptId={activePromptId} isOpen={isOpen} onClose={onClose} children></ActivePromptModal>
