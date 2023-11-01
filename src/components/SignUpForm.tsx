@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { IProfile } from "../shared-types";
 import { createProfile, getProfile } from "../utilities/auth-services";
 import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Checkbox, Textarea, Input, useColorModeValue, Heading, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
@@ -7,36 +6,37 @@ import { ALL_GENRES } from "../constants";
 import { useAuth0 } from '@auth0/auth0-react'
 
 
-interface Props {
-    email: string;
-}
 
 
-export function SignUpForm({ email }: Props) {
+export function SignUpForm() {
 
-    const defaultForm: IProfile = {
-        id: email,
+    const defaultForm = {
         displayName: "",
-        roles: [],
-        genres: [],
+        roles: new Array<string>(),
+        genres: new Array<string>(),
         bio: "",
         details: "",
     }
 
-    const [profileForm, setProfileForm] = useState<IProfile>(defaultForm)
+    const { user, getAccessTokenSilently } = useAuth0()
+    const email = user?.email ? user.email : ""
+
+
+
+    const [profileForm, setProfileForm] = useState(defaultForm)
     const [isLoading, setIsLoading] = useState(true)
 
     const navigate = useNavigate()
     const borderValue = useColorModeValue('background.300', 'background.700')
     const focusBorderValue = useColorModeValue('accent.300', 'accent.600')
-    const { getAccessTokenSilently } = useAuth0()
+    
 
     async function handleSubmit(evt: FormEvent) {
 
         evt.preventDefault()
 
         try {
-            const profileResponse = await createProfile(profileForm)
+            const profileResponse = await createProfile({...profileForm, id: email})
             console.log('in signupform', profileResponse)
 
             if (profileResponse.id === email) {
@@ -76,6 +76,8 @@ export function SignUpForm({ email }: Props) {
             if (profileResponse?.id) {
                 console.log('you have a profile')
                 navigate('/profile')
+            } else {
+                setIsLoading(false)
             }
 
         } catch (error) {

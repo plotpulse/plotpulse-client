@@ -8,39 +8,46 @@ interface ModalPromptProps {
 
 export function ModalPrompt({ prompt }: ModalPromptProps) {
 
-    const { id, content, user, genres } = prompt
+    const { id, content, user, genres, created } = prompt
+    const date = new Date(created)
     const badgeBGValue = useColorModeValue('accent.100', 'accent.700')
 
     return (
-        <Card variant={"main"} mx={4}
-            _hover={{ scale: 1.1 }}>
-            <CardHeader display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
-                <Box>
-                    @{user?.displayName}
-                    {genres.map((genre, idx) => {
-                        return (
-                            <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} mx={2} p={1}>{genre}</Badge>
-                        )
-                    })}
+        <Card variant={"prompt"} mx={4}
+            >
+            <CardHeader>
+                <Box display={'flex'} flexWrap={'wrap'} flexDirection={'row'} justifyContent={'space-between'} my={2}>
+                    <Box>
+                        @{user?.displayName}
+
+                    </Box>
+                    <Box>
+                        {date.toLocaleDateString()}
+
+                    </Box>
+
 
                 </Box>
 
+                <Box display={'flex'} flexWrap={'wrap'} flexDirection={'row'} justifyContent={'flex-end'} gap={4} my={2}>
+                    {genres.map((genre, idx) => {
+                        return (
+                            <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} p={2}>{genre}</Badge>
+                        )
+                    })}
+
+
+                </Box>
+
+
             </CardHeader>
             <CardBody>
-                <Grid templateColumns={'repeat(12, 1fr)'} gap={2}>
-                    <GridItem colSpan={10}>
-                        <Text>{content}</Text>
-
-                    </GridItem>
-                    <GridItem colSpan={2}>
-                        <StarButton promptId={id} my={2}/>
-
-                    </GridItem>
-                </Grid>
+                <Text >{content}</Text>
 
             </CardBody>
-            <CardFooter display={'flex'} flexDirection={'column'}>
-                
+            <CardFooter display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
+                <StarButton promptId={id} mx={2} w={'7rem'} />
+
 
 
 

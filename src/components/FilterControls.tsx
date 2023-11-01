@@ -1,4 +1,4 @@
-import { Heading, Box, useColorModeValue, BoxProps, Button, VStack, Flex } from "@chakra-ui/react"
+import { Heading, Box, useColorModeValue, BoxProps, Button, Flex } from "@chakra-ui/react"
 
 import { GenreFilterButton } from "."
 import { ALL_GENRES } from "../constants"

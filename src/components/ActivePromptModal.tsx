@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter, ModalProps } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter, ModalProps, useColorModeValue } from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
 import { getPrompt } from "../utilities/prompt-services";
 import { useAuth0 } from '@auth0/auth0-react'
@@ -17,6 +17,7 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
     const [prompt, setPrompt] = useState<IPrompt | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const [submitted, setSubmitted] = useState(0)
+    const bgValue = useColorModeValue('background.500', 'background.600')
 
     async function handleFetchPrompt() {
         
@@ -60,17 +61,24 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
 
 
     return (
-        <Modal isOpen={isOpen} onClose={onClose} size='full'>
+        <Modal isOpen={isOpen} onClose={onClose} size='6xl' scrollBehavior="inside">
             <ModalOverlay />
-            <ModalContent mx={40}>
+            <ModalContent>
                 <ModalCloseButton />
+                <ModalHeader minH={'3.25rem'} bg={bgValue}>
 
-                <ModalBody>
+                </ModalHeader>
+
+                <ModalBody p={4}>
 
                     {isLoading ? <p>Loading...</p> : loaded()}
 
 
                 </ModalBody>
+
+                <ModalFooter minH={'3.25rem'} bg={bgValue}>
+
+                </ModalFooter>
 
             </ModalContent>
 

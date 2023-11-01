@@ -15,6 +15,8 @@ import styles from './styles'
 import { buttonTheme } from './components/button'
 import { cardTheme } from "./components/card";
 import { checkboxTheme } from "./components/checkboxgroup";
+import { menuTheme } from "./components/menu";
+import { modalTheme } from "./components/modal";
 
 const overrides: Record<string, any> = {
     config,
@@ -27,6 +29,8 @@ const overrides: Record<string, any> = {
       Button: buttonTheme,
       Card: cardTheme,
       Checkbox: checkboxTheme,
+      Menu: menuTheme,
+      Modal: modalTheme,
       // Other components go here
     },
 }

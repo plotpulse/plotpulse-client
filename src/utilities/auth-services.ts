@@ -22,7 +22,8 @@ export async function getProfile(token: string, userEmail: string): Promise<IPro
 
         const response = await fetch(url, options)
         if (response.ok){
-            return response.json()
+            const profile = response.json()
+            return profile
         } else {
             throw new Error("Invalid request")
         }
@@ -39,7 +40,7 @@ export async function getProfile(token: string, userEmail: string): Promise<IPro
 }
 
 
-export async function createProfile(data: IProfile){
+export async function createProfile(data: {}){
     try {
 
         const options = {
