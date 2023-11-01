@@ -71,7 +71,7 @@ export function Suggestions({ prompts, updateActive }: SuggestionsProps) {
 
         return (
             <>
-                <Box mx={2} borderRightWidth={3} borderColor={borderValue} h={'80vh'} display={'flex'} flexDirection={"column"} p={4} gap={2}>
+                <Box mx={2} borderRightWidth={3} borderColor={borderValue} display={'flex'} flexDirection={"column"} p={4} gap={2}>
                     <Heading size={['xs', null, 'sm']}>Suggstions for you:</Heading>
                     <Divider></Divider>
                     {suggestions}
