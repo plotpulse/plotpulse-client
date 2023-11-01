@@ -18,11 +18,7 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
             <CardHeader display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
                 <Box>
                     @{user?.displayName}
-                    {genres.map((genre, idx) => {
-                        return (
-                            <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} mx={2} p={1}>{genre}</Badge>
-                        )
-                    })}
+                    
                 </Box>
 
             </CardHeader>
@@ -32,15 +28,21 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
                         <Text>{content}</Text>
 
                     </GridItem>
-                    <GridItem colSpan={2}>
-                        <StarButton promptId={id} my={2}/>
-                        <ViewRepliesButton promptId={id} updateActive={updateActive} my={2} ></ViewRepliesButton>
+                    <GridItem colSpan={2} display={'flex'} flexDirection={'column'} alignItems={'flex-end'}>
+                    {genres.map((genre, idx) => {
+                        return (
+                            <Badge bgColor={badgeBGValue} borderRadius={"md"} key={idx} p={2}>{genre}</Badge>
+                        )
+                    })}
+
 
                     </GridItem>
                 </Grid>
 
             </CardBody>
-            <CardFooter display={'flex'} flexDirection={'column'}>
+            <CardFooter display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
+                <StarButton promptId={id} mx={2} w={'7rem'} />
+                <ViewRepliesButton promptId={id} updateActive={updateActive} mx={2} w={'7rem'}></ViewRepliesButton>
 
             </CardFooter>
         </Card>
