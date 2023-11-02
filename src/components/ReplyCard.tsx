@@ -1,4 +1,4 @@
-import { Heading, Box, Text, BoxProps, useDisclosure, Card, CardBody, CardHeader, CardFooter, CardProps, useColorModeValue } from "@chakra-ui/react";
+import { Heading, Text, useDisclosure, Card, CardBody, CardHeader, CardFooter, CardProps, useColorModeValue } from "@chakra-ui/react";
 import { IReply } from "../shared-types";
 
 interface ReplyCardProps extends CardProps {
@@ -9,7 +9,7 @@ interface ReplyCardProps extends CardProps {
 export function ReplyCard({ reply }: ReplyCardProps) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const bgValue = useColorModeValue('accent.100', 'accent.800')
-    const borderValue = useColorModeValue('accent.100', 'accent.800')
+    
 
     return (
         <Card variant={'reply'} my={2}>

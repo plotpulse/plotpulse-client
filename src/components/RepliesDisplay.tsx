@@ -1,4 +1,4 @@
-import { BoxProps, Box, Heading, Text } from "@chakra-ui/react";
+import { BoxProps, Box,} from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getReplies } from "../utilities/reply-service";
