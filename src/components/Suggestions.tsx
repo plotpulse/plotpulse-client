@@ -74,7 +74,7 @@ export function Suggestions({ prompts, updateActive }: SuggestionsProps) {
     useEffect(() => { handleFetchProfile() }, [isLoading])
 
     return (
-        <Skeleton isLoaded={!isLoading} fadeDuration={1}>
+        <Skeleton isLoaded={!isLoading}>
             <Box mx={2} borderRightWidth={3} borderColor={borderValue} display={'flex'} flexDirection={"column"} p={4} gap={2}>
                     <Heading size={['xs', null, 'sm']}>Suggstions for you:</Heading>
                     <Divider></Divider>

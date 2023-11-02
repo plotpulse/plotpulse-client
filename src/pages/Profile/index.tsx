@@ -46,7 +46,7 @@ export function Profile() {
         <PageWrapper>
             <Text>{user ? `User is ${email}` : "Please log in"}</Text>
 
-            <Skeleton isLoaded={!isLoading} fadeDuration={1}>
+            <Skeleton isLoaded={!isLoading}>
                 <Dashboard />
 
             </Skeleton>

@@ -11,7 +11,6 @@ export function Home() {
         <PageWrapper>
             <Hero />
             <HowItWorks />
-            <AboutUs />
 
             
 

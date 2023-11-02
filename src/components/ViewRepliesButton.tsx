@@ -59,7 +59,7 @@ export function ViewRepliesButton({promptId, updateActive, ...otherProps}: ViewR
    
 
     return (
-        <Skeleton isLoaded={!isLoading} fadeDuration={1}>
+        <Skeleton isLoaded={!isLoading}>
             <Button {...otherProps} rightIcon={<ChatIcon color={hasReplied ? 'accent.400' : 'gray.400'} />} onClick={() => updateActive(promptId)}>{replies?.length}</Button>
 
 

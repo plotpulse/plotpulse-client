@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { createProfile, getProfile } from "../utilities/auth-services";
-import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Checkbox, Textarea, Input, useColorModeValue, Heading, } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel, FormHelperText, Button, CheckboxGroup, Checkbox, Textarea, Input, useColorModeValue, Heading, Skeleton, } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import { ALL_GENRES } from "../constants";
 import { useAuth0 } from '@auth0/auth0-react'
@@ -29,14 +29,14 @@ export function SignUpForm() {
     const navigate = useNavigate()
     const borderValue = useColorModeValue('background.300', 'background.700')
     const focusBorderValue = useColorModeValue('accent.300', 'accent.600')
-    
+
 
     async function handleSubmit(evt: FormEvent) {
 
         evt.preventDefault()
 
         try {
-            const profileResponse = await createProfile({...profileForm, id: email})
+            const profileResponse = await createProfile({ ...profileForm, id: email })
             console.log('in signupform', profileResponse)
 
             if (profileResponse.id === email) {
@@ -89,10 +89,10 @@ export function SignUpForm() {
 
     useEffect(() => { handleProfile() }, [isLoading])
 
-    function loaded() {
+    return (
+        <Box m={4} p={8} display={'flex'} flexDirection={'column'} maxW={['100%', '75%']} mx={'auto'}>
+            <Skeleton isLoaded={!isLoading}>
 
-        return (
-            <>
                 <Heading m={4}>Complete your account creation</Heading>
                 <form onSubmit={handleSubmit}>
                     <FormControl my={4} borderWidth={2} borderColor={borderValue} p={4}>
@@ -166,14 +166,8 @@ export function SignUpForm() {
 
                     <Button type='submit'>Create my Profile</Button>
                 </form>
-            </>
 
-        )
-    }
-
-    return (
-        <Box m={4} p={8} display={'flex'} flexDirection={'column'} maxW={['100%', '75%']} mx={'auto'}>
-            {isLoading ? <p>Loading...</p> : loaded()}
+            </Skeleton>
 
 
         </Box>

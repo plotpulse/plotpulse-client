@@ -1,4 +1,4 @@
-import { BoxProps, Box,} from "@chakra-ui/react";
+import { BoxProps, Box, Skeleton, } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getReplies } from "../utilities/reply-service";
@@ -35,28 +35,20 @@ export function RepliesDisplay({ promptId, submitted }: RepliesDisplayProps) {
         }
     }
 
-    function loaded() {
-        if (!replies) return
-
-        const replyElements = replies?.map(reply => {
-            return (
-                <ReplyCard key={reply.id} reply={reply}/>
-            )
-        })
-
+    const replyElements = replies?.map(reply => {
         return (
-            <>
-                {replyElements}
-            </>
+            <ReplyCard key={reply.id} reply={reply} />
         )
-    }
+    })
+
 
     useEffect(() => { handleFetchReplies() }, [submitted])
 
     return (
         <Box p={4} my={2}>
-            {isLoading ? <p>Loading...</p> : loaded()}
-
+            <Skeleton isLoaded={!isLoading}>
+                {replyElements}
+            </Skeleton>
         </Box>
     )
 

@@ -104,7 +104,7 @@ export function PromptsIndex() {
     return (
         <PageWrapper overflow={'hidden'} maxH={'90vh'}>
 
-            <Skeleton isLoaded={!isLoading} fadeDuration={1}>
+            <Skeleton isLoaded={!isLoading}>
             <>
                 <TimelineHeader topOfTl={topOfTl} />
 
