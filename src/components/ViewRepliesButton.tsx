@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@chakra-ui/react";
+import { Button, ButtonProps, Skeleton } from "@chakra-ui/react";
 import { IReply } from "../shared-types";
 import { useEffect, useState } from "react";
 import { ChatIcon } from "@chakra-ui/icons";
@@ -58,17 +58,12 @@ export function ViewRepliesButton({promptId, updateActive, ...otherProps}: ViewR
 
    
 
-    function loaded(){
-
-        return (
-            <Button {...otherProps} rightIcon={<ChatIcon color={hasReplied ? 'accent.400' : 'gray.400'} />} onClick={() => updateActive(promptId)}>{replies?.length}</Button>
-        )
-    }
-
     return (
-        <>
-        {isLoading ? <></>: loaded()}
-        </>
+        <Skeleton isLoaded={!isLoading} fadeDuration={1}>
+            <Button {...otherProps} rightIcon={<ChatIcon color={hasReplied ? 'accent.400' : 'gray.400'} />} onClick={() => updateActive(promptId)}>{replies?.length}</Button>
+
+
+        </Skeleton>
     )
 
     
