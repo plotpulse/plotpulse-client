@@ -3,7 +3,7 @@ import { PageWrapper, Dashboard } from "../../components"
 import { useAuth0 } from "@auth0/auth0-react";
 import { IProfile } from "../../shared-types";
 import { getProfile, } from "../../utilities/auth-services";
-import { Skeleton, Text } from "@chakra-ui/react";
+import { Skeleton,} from "@chakra-ui/react";
 
 
 

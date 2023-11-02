@@ -1,4 +1,4 @@
-import { Box, BoxProps, Button, HStack, Heading, List, ListItem, Text, UnorderedList } from "@chakra-ui/react";
+import { Box, BoxProps, Button, HStack, Heading, ListItem, Text, UnorderedList } from "@chakra-ui/react";
 import { IProfile } from "../shared-types";
 import { useNavigate } from "react-router";
 
