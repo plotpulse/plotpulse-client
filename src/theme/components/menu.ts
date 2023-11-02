@@ -12,9 +12,6 @@ const baseStyle = definePartsStyle(
     (props: StyleFunctionProps) => (
         {
             list: {
-              // this will style the MenuList component
-          
-          
               px: '4',
               py: '8',
               borderRadius: 'xl',
@@ -23,9 +20,6 @@ const baseStyle = definePartsStyle(
               bg: mode('accent.200', 'accent.800')(props),
             },
             item: {
-              // this will style the MenuItem and MenuItemOption components
-          
-          
               my: '4',
               bg: mode('whiteAlpha.400', 'blackAlpha.400')(props),
               _hover: {
@@ -42,10 +36,6 @@ const baseStyle = definePartsStyle(
           }
 
     )
-    
-   
-
 
 )
-// export the base styles in the component theme
 export const menuTheme = defineMultiStyleConfig({ baseStyle })

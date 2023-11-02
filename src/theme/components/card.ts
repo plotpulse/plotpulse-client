@@ -19,9 +19,7 @@ const baseStyle = definePartsStyle({
       body: {
         paddingTop: "2px"
       },
-    //   footer: {
-    //     paddingTop: "4px"
-    //   }
+
 });
 
 const variants = {

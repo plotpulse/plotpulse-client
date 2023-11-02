@@ -9,7 +9,7 @@ import fonts from "./fonts";
 import styles from './styles'
 
 // Foundational style overrides
-// import borders from './foundations/borders'
+
 
 // Component style overrides
 import { buttonTheme } from './components/button'
