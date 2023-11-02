@@ -2,6 +2,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Card, CardHeader, Heading, CardBody, CardFooter, Button, Text, SimpleGrid, Box, useColorModeValue, Divider, Link as ChakraLink } from "@chakra-ui/react";
 import { useNavigate } from "react-router";
 import { Link as RouterLink } from "react-router-dom";
+import { SIGNUP_OPTIONS } from "../constants";
 
 
 export function HowItWorks() {
@@ -10,9 +11,6 @@ export function HowItWorks() {
     const { loginWithRedirect } = useAuth0()
     const navigate = useNavigate()
 
-    const signup = {
-        authorizationParams: { redirect_uri: "http://localhost:5173/signup" }
-    }
 
     return (
         <Box minH={'75vh'} w={'full'} maxW={'xxl'} mt={4} mb={16}>
@@ -30,7 +28,7 @@ export function HowItWorks() {
                     <Text>Create an account and a user profile. What type of content are you interested in? What genres are your favorite? What type of worlds do you want to build?</Text>
                 </CardBody>
                 <CardFooter>
-                    <Button variant={'brandPrimary'} onClick={() => loginWithRedirect(signup)}>Sign Up</Button>
+                    <Button variant={'brandPrimary'} onClick={() => loginWithRedirect(SIGNUP_OPTIONS)}>Sign Up</Button>
                 </CardFooter>
             </Card>
 
