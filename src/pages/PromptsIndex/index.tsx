@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, Ref, RefObject } from "react";
 import { useParams } from "react-router";
 import { PageWrapper, TimelineHeader, Timeline, Suggestions, ActivePromptModal, FilterControls} from "../../components"
 import { IPrompt, } from "../../shared-types"
-import { Grid, GridItem, useDisclosure, useBreakpointValue } from "@chakra-ui/react";
+import { Grid, GridItem, useDisclosure, useBreakpointValue, Skeleton } from "@chakra-ui/react";
 import { ALL_GENRES } from "../../constants";
 import { getAllPrompts } from "../../utilities/prompt-services"
 
@@ -101,8 +101,10 @@ export function PromptsIndex() {
     useEffect(() => { checkParams()}, [isLoading])
 
 
-    function loaded() {
-        return (
+    return (
+        <PageWrapper overflow={'hidden'} maxH={'90vh'}>
+
+            <Skeleton isLoaded={!isLoading}>
             <>
                 <TimelineHeader topOfTl={topOfTl} />
 
@@ -127,15 +129,8 @@ export function PromptsIndex() {
                 </Grid>
                 <ActivePromptModal activePromptId={activePromptId} isOpen={isOpen} onClose={onClose} children></ActivePromptModal>
             </>
-        )
 
-    }
-
-
-    return (
-        <PageWrapper overflow={'hidden'} maxH={'90vh'}>
-
-            {isLoading ? <p>Loading...</p> : loaded()} 
+            </Skeleton>
 
         </PageWrapper>
     )

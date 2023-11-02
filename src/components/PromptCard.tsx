@@ -1,17 +1,18 @@
 import { Card, CardHeader, CardBody, CardFooter, Text, Badge, useColorModeValue, Box,} from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
 import { StarButton, ViewRepliesButton } from ".";
+import { User } from "@auth0/auth0-react";
 
 interface PromptCardProps {
     prompt: IPrompt;
     updateActive: (id: number) => void;
+    auth0User: User | undefined;
 }
 
-export function PromptCard({ prompt, updateActive }: PromptCardProps) {
+export function PromptCard({ prompt, updateActive, auth0User }: PromptCardProps) {
 
     const { id, content, user, genres, created } = prompt
     const date = new Date(created)
-    console.log(prompt)
     const badgeBGValue = useColorModeValue('accent.100', 'accent.700')
 
     return (
@@ -51,8 +52,19 @@ export function PromptCard({ prompt, updateActive }: PromptCardProps) {
 
             </CardBody>
             <CardFooter display={'flex'} flexDirection={'row'} alignItems={'center'} justifyContent={'center'}>
+                {auth0User ? 
+                
+                <>
                 <StarButton promptId={id} mx={2} w={'7rem'} />
-                <ViewRepliesButton promptId={id} updateActive={updateActive} mx={2} w={'7rem'}></ViewRepliesButton>
+                <ViewRepliesButton promptId={id} updateActive={updateActive} mx={2} w={'7rem'}/>
+                </> 
+
+                : 
+                
+                <>
+                <Text>You must be logged in to use this feature.</Text>
+                </> }
+
 
             </CardFooter>
         </Card>

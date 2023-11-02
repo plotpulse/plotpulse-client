@@ -9,7 +9,7 @@ import fonts from "./fonts";
 import styles from './styles'
 
 // Foundational style overrides
-// import borders from './foundations/borders'
+
 
 // Component style overrides
 import { buttonTheme } from './components/button'
@@ -17,21 +17,22 @@ import { cardTheme } from "./components/card";
 import { checkboxTheme } from "./components/checkboxgroup";
 import { menuTheme } from "./components/menu";
 import { modalTheme } from "./components/modal";
+import { skeletonTheme } from "./components/skeleton";
 
 const overrides: Record<string, any> = {
     config,
     colors,
     fonts,
     styles,
-    // borders,
-    // // Other foundational style overrides go here
+
     components: {
       Button: buttonTheme,
       Card: cardTheme,
       Checkbox: checkboxTheme,
       Menu: menuTheme,
       Modal: modalTheme,
-      // Other components go here
+      Skeleton: skeletonTheme,
+  
     },
 }
 

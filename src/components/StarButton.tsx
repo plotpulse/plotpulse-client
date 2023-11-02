@@ -1,4 +1,4 @@
-import { Button, ButtonProps } from "@chakra-ui/react";
+import { Button, ButtonProps, Skeleton } from "@chakra-ui/react";
 import { IStar } from "../shared-types";
 import { useEffect, useState } from "react";
 import { StarIcon } from "@chakra-ui/icons";
@@ -9,16 +9,16 @@ interface StarButtonProps extends ButtonProps {
     promptId: number;
 }
 
-export function StarButton({promptId, ...otherProps}: StarButtonProps){
+export function StarButton({ promptId, ...otherProps }: StarButtonProps) {
 
-    const [ isLoading, setIsLoading ] = useState(true)
-    const [ isStarred, setIsStarred ] = useState(false)
-    const [ stars, setStars ] = useState<IStar[] | null>(null)
-    const [ userStarredId, setUserStarredId] = useState(0)
+    const [isLoading, setIsLoading] = useState(true)
+    const [isStarred, setIsStarred] = useState(false)
+    const [stars, setStars] = useState<IStar[] | null>(null)
+    const [userStarredId, setUserStarredId] = useState(0)
     const { user, getAccessTokenSilently } = useAuth0()
     const email = user ? user.email : ""
 
-    async function handleFetchStars(){
+    async function handleFetchStars() {
 
         try {
             const starsResponse = await getAllStars(await getAccessTokenSilently(), promptId)
@@ -40,11 +40,11 @@ export function StarButton({promptId, ...otherProps}: StarButtonProps){
     useEffect(() => { checkStarred() }, [stars])
 
 
-    function userStarred(){
+    function userStarred() {
 
         if (stars === null) return false
-        for (let i = 0; i < stars.length; i++){
-            if (stars[i].user?.id === user?.email){
+        for (let i = 0; i < stars.length; i++) {
+            if (stars[i].user?.id === user?.email) {
                 setUserStarredId(stars[i].id)
                 return true
             }
@@ -53,42 +53,38 @@ export function StarButton({promptId, ...otherProps}: StarButtonProps){
 
     }
 
-    function checkStarred(){
+    function checkStarred() {
         setIsStarred(userStarred())
     }
 
-    async function handleButtonClick(){
-        
+    async function handleButtonClick() {
+
         try {
-            
+
             const newStar = {
                 userId: email,
                 promptId: promptId
             }
-            
+
             const starResponse = isStarred ? await deleteStar(await getAccessTokenSilently(), promptId, userStarredId) : await createStar(await getAccessTokenSilently(), promptId, newStar)
-            if (starResponse){
+            if (starResponse) {
                 setIsLoading(true)
             }
-            
+
         } catch (error) {
-            
+
         }
     }
 
-    function loaded(){
-
-        return (
-            <Button {...otherProps} rightIcon={<StarIcon color={isStarred ? 'accent.400' : 'gray.400'} />} onClick={handleButtonClick}>{stars?.length}</Button>
-        )
-    }
-
     return (
-        <>
-        {isLoading ? <></>: loaded()}
-        </>
+        <Skeleton isLoaded={!isLoading}>
+
+            <Button {...otherProps} rightIcon={<StarIcon color={isStarred ? 'accent.400' : 'gray.400'} />} onClick={handleButtonClick}>{stars?.length}</Button>
+
+
+        </Skeleton>
     )
 
-    
+
 
 }

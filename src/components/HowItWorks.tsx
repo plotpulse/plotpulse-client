@@ -1,12 +1,19 @@
-import { Card, CardHeader, Heading, CardBody, CardFooter, Button, Text, SimpleGrid, Box, useColorModeValue, Divider } from "@chakra-ui/react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Card, CardHeader, Heading, CardBody, CardFooter, Button, Text, SimpleGrid, Box, useColorModeValue, Divider, Link as ChakraLink } from "@chakra-ui/react";
+import { useNavigate } from "react-router";
+import { Link as RouterLink } from "react-router-dom";
+import { SIGNUP_OPTIONS } from "../constants";
 
 
 export function HowItWorks() {
 
     const accentVal = useColorModeValue('accent.700', 'accent.200')
+    const { loginWithRedirect } = useAuth0()
+    const navigate = useNavigate()
+
 
     return (
-        <Box minH={'75vh'} w={'full'} maxW={'xxl'} mt={4}>
+        <Box minH={'75vh'} w={'full'} maxW={'xxl'} mt={4} mb={16}>
         
         <Heading size='lg' textAlign={'center'} mb={8}>How It Works</Heading>
 
@@ -21,7 +28,7 @@ export function HowItWorks() {
                     <Text>Create an account and a user profile. What type of content are you interested in? What genres are your favorite? What type of worlds do you want to build?</Text>
                 </CardBody>
                 <CardFooter>
-                    <Button variant={'brandPrimary'}>Fix this button</Button>
+                    <Button variant={'brandPrimary'} onClick={() => loginWithRedirect(SIGNUP_OPTIONS)}>Sign Up</Button>
                 </CardFooter>
             </Card>
 
@@ -36,7 +43,7 @@ export function HowItWorks() {
                     <Text>View all of our user-submitted prompts. Find the inspiration for your next campaign, character build, or the next beat in your sprawling novel. Post replies to prompts and submit your own to keep the creative juices flowing!</Text>
                 </CardBody>
                 <CardFooter>
-                    <Button variant={'brandPrimary'}>All Prompts</Button>
+                    <Button variant={'brandPrimary'} onClick={() => navigate('/feed')}>All Prompts</Button>
                 </CardFooter>
             </Card>
 
@@ -50,7 +57,17 @@ export function HowItWorks() {
                     <Text>Plot Pulse is growing, and we've got a ton of new features coming down the pipeline. Soon, you'll be able to use our platform to fully plan and document everything related to your unique creations.</Text>
                 </CardBody>
                 <CardFooter>
-                    <Button variant={'brandPrimary'}>Coming soon!</Button>
+                    
+                        <ChakraLink
+                        as={RouterLink}
+                        
+                        to="https://github.com/plotpulse"
+                        target="_blank">
+                            <Button variant={'brandPrimary'}>GitHub</Button>
+                        
+                        </ChakraLink>
+                        
+                        
                 </CardFooter>
             </Card>
         </SimpleGrid>

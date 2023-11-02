@@ -1,10 +1,11 @@
 import { HStack, Link as ChakraLink, useColorMode, useColorModeValue, IconButton, Box, Flex, Heading, Image, MenuButton, Menu, MenuList, MenuItem, } from "@chakra-ui/react"
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
-import { useAuth0, RedirectLoginOptions } from '@auth0/auth0-react'
+import { useAuth0, } from '@auth0/auth0-react'
 import { getProfile } from "../utilities/auth-services"
 import { useEffect, useState, } from "react"
 import { IProfile } from "../shared-types"
+import { SIGNUP_OPTIONS, LOGIN_OPTIONS } from "../constants"
 
 export function Navbar() {
     const [profile, setProfile] = useState<IProfile | null>(null)
@@ -19,17 +20,6 @@ export function Navbar() {
     const { user, loginWithRedirect, logout, getAccessTokenSilently } = useAuth0()
 
     const navigate = useNavigate()
-
-    // REFACTOR to an env, possibly with a "constants" import folder
-    // REFACTOR to handle for deployment
-
-    const signup: RedirectLoginOptions = {
-        authorizationParams: { redirect_uri: "http://localhost:5173/signup" }
-    }
-
-    const login: RedirectLoginOptions = {
-        authorizationParams: { redirect_uri: "http://localhost:5173/profile" }
-    }
 
     async function handleProfile() {
         const email = user?.email ? user.email : ''
@@ -111,11 +101,11 @@ export function Navbar() {
 
                                         :
                                         <>
-                                            <MenuItem onClick={() => loginWithRedirect(signup)}>
+                                            <MenuItem onClick={() => loginWithRedirect(SIGNUP_OPTIONS)}>
                                                 Sign Up
                                             </MenuItem>
 
-                                            <MenuItem onClick={() => loginWithRedirect(login)}>
+                                            <MenuItem onClick={() => loginWithRedirect(LOGIN_OPTIONS)}>
                                                 Log In
                                             </MenuItem>
                                         </>}

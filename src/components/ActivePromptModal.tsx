@@ -1,4 +1,4 @@
-import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter, ModalProps, useColorModeValue } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalCloseButton, ModalHeader, ModalBody, ModalFooter, ModalProps, useColorModeValue, Skeleton } from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
 import { getPrompt } from "../utilities/prompt-services";
 import { useAuth0 } from '@auth0/auth0-react'
@@ -20,7 +20,7 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
     const bgValue = useColorModeValue('background.500', 'background.600')
 
     async function handleFetchPrompt() {
-        
+
         if (!activePromptId) return
 
         try {
@@ -39,26 +39,6 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
 
     useEffect(() => { handleFetchPrompt() }, [isLoading, activePromptId])
 
-    function loaded() {
-        if (!prompt) return
-
-        return (
-            <>
-               <ModalPrompt prompt={prompt}/> 
-                
-
-
-                <AddReply promptId={prompt.id} submitted={submitted} setSubmitted={setSubmitted}/>
-
-                <RepliesDisplay promptId={prompt.id} submitted={submitted}/>
-
-                
-            </>
-
-
-        )
-    }
-
 
     return (
         <Modal isOpen={isOpen} onClose={onClose} size='6xl' scrollBehavior="inside">
@@ -70,10 +50,20 @@ export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePro
                 </ModalHeader>
 
                 <ModalBody p={4}>
+                    <Skeleton isLoaded={!isLoading}>
+                        {prompt ?
 
-                    {isLoading ? <p>Loading...</p> : loaded()}
+                            <>
 
+                                <ModalPrompt prompt={prompt} />
+                                <AddReply promptId={prompt.id} submitted={submitted} setSubmitted={setSubmitted} />
+                                <RepliesDisplay promptId={prompt.id} submitted={submitted} />
 
+                            </>
+                            :
+                            <></>
+                        }
+                    </Skeleton>
                 </ModalBody>
 
                 <ModalFooter minH={'3.25rem'} bg={bgValue}>

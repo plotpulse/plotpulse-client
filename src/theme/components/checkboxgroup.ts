@@ -12,10 +12,6 @@ const brand = definePartsStyle(
     
     (props: StyleFunctionProps) => (
         {
-            // icon:{
-            //     backgroundColor: mode('accent.300', 'accent.600')(props)
-
-            // },
             control: {
               padding: 3, 
               borderColor: mode('background.300', 'background.600')(props)
@@ -32,11 +28,7 @@ const brand = definePartsStyle(
                 
             }
           }
-
     )
-    
-
-
 )
 
 export const checkboxTheme = defineMultiStyleConfig({

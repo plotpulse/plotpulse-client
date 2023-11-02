@@ -34,6 +34,7 @@ export { StarButton } from './StarButton'
 export { ViewRepliesButton } from './ViewRepliesButton'
 export { ModalPrompt } from './ModalPrompt'
 export { FilterControls } from './FilterControls'
+export { ReplyCard } from './ReplyCard'
 
 
 

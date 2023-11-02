@@ -9,3 +9,11 @@ export const ALL_GENRES = [
     "mystery",
     "adventure"
 ];
+
+export const SIGNUP_OPTIONS = {
+    authorizationParams: { redirect_uri: import.meta.env.VITE_SIGNUP_REDIRECT }
+}
+
+export const LOGIN_OPTIONS = {
+    authorizationParams: { redirect_uri: import.meta.env.VITE_LOGIN_REDIRECT }
+}
