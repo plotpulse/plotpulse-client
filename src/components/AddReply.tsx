@@ -60,7 +60,7 @@ export function AddReply({ promptId, submitted, setSubmitted }: AddReplyProps) {
 
 
     return (
-        <Flex direction={"column"}>
+        <Flex direction={"column"} my={2} p={4}>
             <Button {...buttonProps}>
                 {disclosureProps.hidden ? "Add a Reply" : "Close"}
             </Button>

@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getReplies } from "../utilities/reply-service";
 import { IReply } from "../shared-types";
+import { ReplyCard } from "./ReplyCard";
 
 
 interface RepliesDisplayProps extends BoxProps {
@@ -39,10 +40,7 @@ export function RepliesDisplay({ promptId, submitted }: RepliesDisplayProps) {
 
         const replyElements = replies?.map(reply => {
             return (
-                <Box key={reply.id}>
-                    <Heading size={'xs'}>@{reply.user.displayName}</Heading>
-                    <Text>{reply.response}</Text>
-                </Box>
+                <ReplyCard key={reply.id} reply={reply}/>
             )
         })
 
@@ -56,7 +54,7 @@ export function RepliesDisplay({ promptId, submitted }: RepliesDisplayProps) {
     useEffect(() => { handleFetchReplies() }, [submitted])
 
     return (
-        <Box>
+        <Box p={4} my={2}>
             {isLoading ? <p>Loading...</p> : loaded()}
 
         </Box>

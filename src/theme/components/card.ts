@@ -50,10 +50,20 @@ const variants = {
                 padding: '4',
                 boxShadow: '2px',
                 borderStyle: 'inset'
-
-
             }
+        }),
+    ),
+    reply: definePartsStyle(
+        (props: StyleFunctionProps) => ({
 
+            container: {
+                backgroundColor: mode('background.50', 'background.900')(props),
+                borderColor: mode('background.100', 'background.800')(props),
+                borderWidth: '6px',
+                padding: '4',
+                boxShadow: '2px',
+                borderStyle: 'inset'
+            }
         }),
     )
 };
