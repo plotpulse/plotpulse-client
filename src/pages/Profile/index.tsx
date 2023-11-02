@@ -42,11 +42,10 @@ export function Profile() {
 
 
 
-    
+
 
     return (
         <PageWrapper>
-            <Text>{user ? `User is ${email}` : "Please log in"}</Text>
 
             <Skeleton isLoaded={!isLoading}>
                 <Dashboard profile={profile} />

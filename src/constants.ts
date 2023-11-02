@@ -11,9 +11,9 @@ export const ALL_GENRES = [
 ];
 
 export const SIGNUP_OPTIONS = {
-    authorizationParams: { redirect_uri: import.meta.env.VITE.SIGNUP_REDIRECT }
+    authorizationParams: { redirect_uri: import.meta.env.VITE_SIGNUP_REDIRECT }
 }
 
 export const LOGIN_OPTIONS = {
-    authorizationParams: { redirect_uri: import.meta.env.VITE.SIGNUP_REDIRECT }
+    authorizationParams: { redirect_uri: import.meta.env.VITE_LOGIN_REDIRECT }
 }
