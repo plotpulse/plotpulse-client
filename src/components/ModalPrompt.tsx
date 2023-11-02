@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardBody, CardFooter, Text, Badge, useColorModeValue, Box, Grid, GridItem } from "@chakra-ui/react";
+import { Card, CardHeader, CardBody, CardFooter, Text, Badge, useColorModeValue, Box,} from "@chakra-ui/react";
 import { IPrompt } from "../shared-types";
 import { StarButton, } from ".";
 

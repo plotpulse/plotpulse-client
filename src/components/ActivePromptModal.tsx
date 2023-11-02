@@ -13,7 +13,7 @@ interface ActivePromptModalProps extends ModalProps {
 
 
 export function ActivePromptModal({ activePromptId, isOpen, onClose }: ActivePromptModalProps) {
-    const { user, getAccessTokenSilently } = useAuth0()
+    const { getAccessTokenSilently } = useAuth0()
     const [prompt, setPrompt] = useState<IPrompt | null>(null)
     const [isLoading, setIsLoading] = useState(true)
     const [submitted, setSubmitted] = useState(0)
