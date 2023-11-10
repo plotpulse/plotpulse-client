@@ -18,9 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <Auth0Provider
     domain={auth0Domain}
     clientId={auth0ClientId}
-    authorizationParams={{
-      audience: auth0Audience
-    }}
+    
     >
       <ChakraProvider theme={theme}>
         <Router>
