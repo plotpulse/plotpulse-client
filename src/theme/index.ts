@@ -6,7 +6,7 @@ import '@fontsource/hepta-slab';
 import config from "./config";
 import colors from './colors'
 import fonts from "./fonts";
-import styles from './styles'
+import styles from './styles';
 
 // Foundational style overrides
 
